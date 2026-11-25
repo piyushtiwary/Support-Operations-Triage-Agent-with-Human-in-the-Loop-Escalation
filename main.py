@@ -5,8 +5,10 @@ run uvicorn context_api:app --port 8001 and set TRIAGE_CONTEXT_URL to
 http://127.0.0.1:8001 before starting the ticket API.
 """
 
+import asyncio
 import os
 import sqlite3
+import time
 from contextlib import asynccontextmanager, closing
 from datetime import UTC, datetime
 from pathlib import Path
@@ -18,13 +20,13 @@ from fastapi import FastAPI, HTTPException, Response
 from fastapi.concurrency import run_in_threadpool
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, field_validator
 
+from audit import AuditLog, AuditRun, LookupSummary, utc_now
 from classification import MODEL_PATH, Classification, Classifier, classify
 from context_api import Nonblank, router as context_router
-from context_tools import Lookup, lookup_context
+from context_tools import LOOKUP_ADAPTER, Lookup, ToolAttempt, lookup_context
 from policy import Category, Decision, PreparedReply, ReviewDecision, Urgency, after_lookup, before_lookup
 
 
-LOOKUP_ADAPTER = TypeAdapter(Lookup)
 DECISION_ADAPTER = TypeAdapter(Decision)
 
 
@@ -110,9 +112,11 @@ def create_app(db_path: Path = Path("tickets.sqlite3"), *, model_path: Path = MO
         connection.row_factory = sqlite3.Row
         return connection
 
-    @asynccontextmanager
-    async def lifespan(app: FastAPI):
-        with closing(connect()) as db, db:
+    audit = AuditLog(db_path, connect)
+
+    def initialize(db: sqlite3.Connection):
+        with db:
+            db.execute("PRAGMA journal_mode = WAL")
             db.execute("BEGIN IMMEDIATE")
             db.execute("""
                 CREATE TABLE IF NOT EXISTS tickets (
@@ -143,15 +147,22 @@ def create_app(db_path: Path = Path("tickets.sqlite3"), *, model_path: Path = MO
                 SELECT id FROM tickets WHERE state = 'pending_review'
                 ON CONFLICT(ticket_id) DO NOTHING
             """)
+            audit.initialize(db)
+
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
         app.state.classifier = Classifier.load(model_path)
         base_url = context_base_url or os.getenv("TRIAGE_CONTEXT_URL")
         transport = context_transport
         if transport is None and not base_url:
             transport = httpx.ASGITransport(app=app)
-        async with httpx.AsyncClient(base_url=base_url or "http://local-context",
-                                     transport=transport, trust_env=False) as client:
-            app.state.context_client = client
-            yield
+        with audit.worker() as owner, closing(connect()) as db:
+            app.state.owner = owner
+            initialize(db)
+            async with httpx.AsyncClient(base_url=base_url or "http://local-context",
+                                         transport=transport, trust_env=False) as client:
+                app.state.context_client = client
+                yield
 
     app = FastAPI(title="Support & Operations Triage", lifespan=lifespan)
     app.include_router(context_router)
@@ -198,8 +209,30 @@ def create_app(db_path: Path = Path("tickets.sqlite3"), *, model_path: Path = MO
         with closing(connect()) as db:
             return find_ticket(db, id)
 
-    def save_triage(ticket_id: str, prediction: Classification, lookup: Lookup | None,
-                    decision: Decision) -> Decision:
+    @app.get("/tickets/{id}/runs", responses={404: {"description": "Ticket not found"}})
+    def get_runs(id: str) -> list[AuditRun]:
+        """Read chronological run history, tool attempts and the accepted reviewer event."""
+        with closing(connect()) as db:
+            runs = audit.history(db, id)
+            if runs is None:
+                raise HTTPException(404, "Ticket not found")
+            return runs
+
+    def begin_triage(ticket_id: str, run_id: str) -> Ticket:
+        with closing(connect()) as db, db:
+            db.execute("BEGIN IMMEDIATE")
+            ticket = find_ticket(db, ticket_id)
+            if ticket.decision is not None:
+                return ticket
+            model = app.state.classifier
+            version = model.version if model else "unavailable"
+            if ticket.classification and not (ticket.classification.reason == "model_unavailable" and model):
+                version = "stored-unversioned"
+            audit.start(db, run_id, ticket_id, app.state.owner, version)
+            return ticket
+
+    def save_triage(ticket: Ticket, run_id: str, started: float, prediction: Classification,
+                    lookup: Lookup | None, decision: Decision) -> Decision:
         state = "draft_ready" if isinstance(decision, PreparedReply) else "pending_review"
         with closing(connect()) as db, db:
             # The winning transaction publishes the decision and its inputs together.
@@ -207,31 +240,64 @@ def create_app(db_path: Path = Path("tickets.sqlite3"), *, model_path: Path = MO
                 """UPDATE tickets SET state = ?, classification = ?, lookup = ?, decision = ?
                    WHERE id = ? AND decision IS NULL""",
                 (state, prediction.model_dump_json(), lookup.model_dump_json() if lookup else None,
-                 decision.model_dump_json(), ticket_id),
+                 decision.model_dump_json(), ticket.id),
             )
+            summary = LookupSummary.from_result(lookup, stored=ticket.lookup is not None) if lookup else None
+            db.execute("""UPDATE runs SET status = ?, finished_at = ?, elapsed_ms = ?, lookup = ?
+                          WHERE run_id = ?""",
+                       ("completed" if cursor.rowcount else "superseded", utc_now(),
+                        (time.monotonic() - started) * 1000, summary.model_dump_json() if summary else None, run_id))
             if cursor.rowcount:
                 if decision.needs_human_review:
-                    db.execute("INSERT INTO reviews (ticket_id) VALUES (?)", (ticket_id,))
+                    db.execute("INSERT INTO reviews (ticket_id, run_id) VALUES (?, ?)", (ticket.id, run_id))
                 return decision
-            return find_ticket(db, ticket_id).decision
+            return find_ticket(db, ticket.id).decision
+
+    async def write_in_threadpool(operation, *args):
+        # A cancelled await cannot stop a SQLite writer thread. Let it commit or
+        # roll back before publishing the cancellation outcome for the same run.
+        write = asyncio.create_task(run_in_threadpool(operation, *args))
+        try:
+            return await asyncio.shield(write)
+        except asyncio.CancelledError:
+            await write
+            raise
 
     @app.post("/tickets/{id}/triage", responses={404: {"description": "Ticket not found"}})
     async def triage_ticket(id: str) -> Decision:
         """Prepare an evidence-backed draft or request review. Replays return the stored decision."""
-        ticket = await run_in_threadpool(get_ticket, id)
-        if ticket.decision is not None:
-            return ticket.decision
-        model = app.state.classifier
-        prediction = ticket.classification
-        if prediction is None or (prediction.reason == "model_unavailable" and model):
-            prediction = await run_in_threadpool(classify, ticket.text, model)
-        decision = before_lookup(ticket.text, prediction, model.threshold if model else None)
-        lookup = ticket.lookup
-        if decision is None:
-            if lookup is None:
-                lookup = await lookup_context(app.state.context_client, prediction, ticket.text, ticket.account_ref)
-            decision = after_lookup(prediction, ticket.text, ticket.account_ref, lookup)
-        return await run_in_threadpool(save_triage, ticket.id, prediction, lookup, decision)
+        started = time.monotonic()
+        run_id = str(uuid4())
+
+        async def record_attempt(event: ToolAttempt):
+            await write_in_threadpool(audit.attempt, run_id, event, started)
+
+        try:
+            ticket = await write_in_threadpool(begin_triage, id, run_id)
+            if ticket.decision is not None:
+                return ticket.decision
+            model = app.state.classifier
+            prediction = ticket.classification
+            if prediction is None or (prediction.reason == "model_unavailable" and model):
+                prediction = await run_in_threadpool(classify, ticket.text, model)
+            await write_in_threadpool(audit.prediction, run_id, prediction, started)
+            decision = before_lookup(ticket.text, prediction, model.threshold if model else None)
+            lookup = ticket.lookup
+            if decision is None:
+                if lookup is None:
+                    lookup = await lookup_context(app.state.context_client, prediction, ticket.text,
+                                                  ticket.account_ref, on_attempt=record_attempt)
+                decision = after_lookup(prediction, ticket.text, ticket.account_ref, lookup)
+            return await write_in_threadpool(save_triage, ticket, run_id, started, prediction, lookup, decision)
+        except asyncio.CancelledError:
+            await run_in_threadpool(audit.stop, run_id, started, "interrupted", "request_cancelled")
+            raise
+        except HTTPException:
+            raise
+        except Exception as exc:
+            code = "storage_error" if isinstance(exc, sqlite3.Error) else "processing_error"
+            await run_in_threadpool(audit.stop, run_id, started, "failed", code)
+            raise HTTPException(500, code) from None
 
     @app.get("/reviews", response_model_exclude_unset=True)
     def list_reviews(state: Literal["pending", "resolved"] = "pending") -> list[Ticket]:

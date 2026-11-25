@@ -10,6 +10,7 @@ from context_api import RUNBOOKS, Nonblank, RunbookEvidence, StatusEvidence
 from context_tools import Found, Lookup, Unavailable, general_timing
 
 
+RULESET_VERSION = "triage-policy-v1"
 Category = ModelCategory | Literal["technical_issue", "unknown", "data_loss"]
 Urgency = Literal["normal", "urgent"]
 

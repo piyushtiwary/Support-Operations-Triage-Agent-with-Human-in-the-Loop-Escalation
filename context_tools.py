@@ -35,7 +35,7 @@ class Found(LookupResult):
 class Failed(LookupResult):
     outcome: Literal["failed"] = "failed"
     reason: Literal["conflicting_evidence", "account_mismatch", "topic_mismatch",
-                    "invalid_schema", "http_error"]
+                    "invalid_schema", "http_error", "tool_error"]
 
 
 class MissingContext(LookupResult):
@@ -49,6 +49,25 @@ class Unavailable(LookupResult):
 
 
 Lookup = Found | Failed | MissingContext | Unavailable
+LOOKUP_ADAPTER = TypeAdapter(Lookup)
+
+
+class ToolAttempt(BaseModel):
+    model_config = ConfigDict(extra="forbid", strict=True)
+
+    tool: Tool
+    number: int = Field(ge=1, le=2)
+    outcome: Literal["started", "found", "failed", "missing_context", "unavailable", "interrupted"]
+    reason: str | None = None
+    http_status: int | None = None
+    elapsed_ms: float | None = Field(default=None, ge=0)
+    evidence_ids: list[str] = Field(default_factory=list)
+
+
+def evidence_ids(lookup: Lookup) -> list[str]:
+    if isinstance(lookup, Found):
+        return [f"{lookup.evidence.source_id}@{lookup.evidence.revision}"]
+    return []
 
 
 def general_timing(text: str) -> bool:
@@ -95,7 +114,8 @@ def read_response(response: httpx.Response, tool: Tool, topic: str, account_ref:
 
 async def lookup_context(client: httpx.AsyncClient, prediction: Classification, text: str,
                          account_ref: str | None, *, clock: Callable[[], float] = time.monotonic,
-                         sleep: Callable[[float], Awaitable[None]] = asyncio.sleep) -> Lookup | None:
+                         sleep: Callable[[float], Awaitable[None]] = asyncio.sleep,
+                         on_attempt: Callable[[ToolAttempt], Awaitable[None]] | None = None) -> Lookup | None:
     topic = prediction.category
     if topic == "technical_issue" and prediction.rule_id:
         topic = prediction.rule_id
@@ -112,6 +132,9 @@ async def lookup_context(client: httpx.AsyncClient, prediction: Classification, 
     else:
         path, params = "/mock/runbooks", {"q": topic}
 
+    event = ToolAttempt(tool=tool, number=1, outcome="started")
+    if on_attempt:
+        await on_attempt(event)
     deadline = clock() + LOOKUP_SECONDS
     attempts = 0
     try:
@@ -121,13 +144,19 @@ async def lookup_context(client: httpx.AsyncClient, prediction: Classification, 
                 if remaining <= 0:
                     break
                 attempts += 1
+                if attempts > 1:
+                    event = ToolAttempt(tool=tool, number=attempts, outcome="started")
+                    if on_attempt:
+                        await on_attempt(event)
+                started = clock()
                 cap = min(ATTEMPT_SECONDS, remaining)
-                attempt_deadline = clock() + cap
+                attempt_deadline = started + cap
                 try:
                     # HTTPX timeouts apply per phase. Also bound the entire GET,
                     # including a response body that arrives in small chunks.
                     async with asyncio.timeout(cap):
                         response = await client.get(path, params=params, timeout=cap)
+                    event.http_status = response.status_code
                     if clock() >= attempt_deadline:
                         raise TimeoutError
                     result = read_response(response, tool, topic, account_ref, attempts)
@@ -138,6 +167,19 @@ async def lookup_context(client: httpx.AsyncClient, prediction: Classification, 
                 except httpx.RequestError:
                     result = Unavailable(tool=tool, attempts=attempts, reason="connection_error")
                     retry = False
+                except asyncio.CancelledError:
+                    event.outcome = "interrupted"
+                    event.elapsed_ms = (clock() - started) * 1000
+                    raise
+                except Exception:
+                    result = Failed(tool=tool, attempts=attempts, reason="tool_error")
+                    retry = False
+
+                if on_attempt:
+                    event.outcome = result.outcome
+                    event.reason = None if isinstance(result, Found) else result.reason
+                    event.elapsed_ms = (clock() - started) * 1000
+                    event.evidence_ids = evidence_ids(result)
 
                 remaining = deadline - clock()
                 if remaining <= 0:
@@ -146,7 +188,20 @@ async def lookup_context(client: httpx.AsyncClient, prediction: Classification, 
                     return result
                 if remaining <= BACKOFF_SECONDS:
                     break
+                if on_attempt:
+                    await on_attempt(event)
                 await sleep(BACKOFF_SECONDS)
     except TimeoutError:
-        pass
+        if event.outcome in {"started", "interrupted"}:
+            event.outcome = "unavailable"
+            event.reason = "deadline_exceeded"
+    except asyncio.CancelledError:
+        if event.outcome == "started":
+            event.outcome = "interrupted"
+        raise
+    finally:
+        # The response already met (or missed) its deadline. Local persistence
+        # after the last GET must not turn an observed success into an outage.
+        if on_attempt and event.outcome != "started":
+            await on_attempt(event)
     return Unavailable(tool=tool, attempts=attempts, reason="deadline_exceeded")

@@ -1,5 +1,6 @@
 """Local, provisional intent classification for support tickets."""
 
+import hashlib
 import logging
 import math
 import pickle
@@ -45,13 +46,14 @@ class Classification(BaseModel):
 class Classifier:
     pipeline: Pipeline
     threshold: float
+    version: str = "unversioned"
 
     @classmethod
     def load(cls, path: Path) -> "Classifier | None":
         try:
             # The application owns this local artifact. Ticket data never selects a path.
-            with path.open("rb") as stream:
-                pipeline, threshold = pickle.load(stream)
+            artifact = path.read_bytes()
+            pipeline, threshold = pickle.loads(artifact)
             if (
                 not isinstance(pipeline, Pipeline)
                 or not isinstance(pipeline.named_steps.get("tfidf"), TfidfVectorizer)
@@ -62,9 +64,9 @@ class Classifier:
                 or not 0 <= threshold <= 1
             ):
                 raise ValueError("Invalid classification artifact")
-            return cls(pipeline, threshold)
+            return cls(pipeline, threshold, "sha256:" + hashlib.sha256(artifact).hexdigest())
         except Exception:
-            logging.getLogger(__name__).exception("Could not load local intent classifier")
+            logging.getLogger(__name__).error("Could not load local intent classifier")
             return None
 
     def predict(self, text: str) -> Classification:
@@ -94,5 +96,5 @@ def classify(text: str, model: Classifier | None) -> Classification:
     try:
         return model.predict(text)
     except Exception:
-        logging.getLogger(__name__).exception("Local intent prediction failed")
+        logging.getLogger(__name__).error("Local intent prediction failed")
         return Classification(category="unknown", reason="model_unavailable")
