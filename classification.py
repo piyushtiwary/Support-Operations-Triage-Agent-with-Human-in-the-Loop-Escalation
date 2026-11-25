@@ -91,4 +91,8 @@ def classify(text: str, model: Classifier | None) -> Classification:
         return Classification(category="technical_issue", rule_id=rule, reason="known_bug")
     if model is None:
         return Classification(category="unknown", reason="model_unavailable")
-    return model.predict(text)
+    try:
+        return model.predict(text)
+    except Exception:
+        logging.getLogger(__name__).exception("Local intent prediction failed")
+        return Classification(category="unknown", reason="model_unavailable")

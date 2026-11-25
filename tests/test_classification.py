@@ -88,7 +88,7 @@ def test_uncertainty_and_exact_rule(model):
     ("Can I buy travel insurance?", "unknown"),
     ("Where is my card?", "delivery"),
     ("My app freezes when I open card tracking.", "technical_issue"),
-    # This mixed ticket currently predicts delivery. Risk routing belongs to step 4.
+    # The raw classification survives the security override.
     ("My card hasn't arrived and someone used it", "delivery"),
 ])
 async def test_triage_replay_after_restart(database, running_client, text, category):
@@ -98,8 +98,10 @@ async def test_triage_replay_after_restart(database, running_client, text, categ
         ticket = (await client.post("/tickets", json=submission)).json()
         url = f"/tickets/{ticket['id']}"
         responses = await asyncio.gather(*(client.post(url + "/triage") for _ in range(4)))
-        prediction = responses[0].json()
-        assert all(r.status_code == 200 and r.json() == prediction for r in responses)
+        decision = responses[0].json()
+        assert all(r.status_code == 200 and r.json() == decision for r in responses)
+        original = (await client.get(url)).json()
+        prediction = original["classification"]
         assert prediction["category"] == category
         if category == "unknown":
             assert prediction["reason"] == "below_threshold"
@@ -108,15 +110,13 @@ async def test_triage_replay_after_restart(database, running_client, text, categ
 
     async with running_client(database, model_path=database.with_suffix(".missing")) as restarted:
         stored = (await restarted.get(url)).json()
-        assert {key: value for key, value in stored.items() if key != "lookup"} == {
-            **ticket, "state": "classified", "classification": prediction
-        }
-        assert (await restarted.post(url + "/triage")).json() == prediction
+        assert stored == original and stored["decision"] == decision
+        assert (await restarted.post(url + "/triage")).json() == decision
         assert (await restarted.post("/tickets", json=submission)).json() == stored
 
 
 @pytest.mark.anyio
-async def test_existing_database_and_failed_model_recovery(database, tmp_path, running_client):
+async def test_existing_database_and_final_model_failure(database, tmp_path, running_client):
     with closing(sqlite3.connect(database)) as db, db:
         db.execute("""CREATE TABLE tickets (id TEXT PRIMARY KEY, external_id TEXT UNIQUE,
                       text TEXT, account_ref TEXT, state TEXT DEFAULT 'received')""")
@@ -126,11 +126,11 @@ async def test_existing_database_and_failed_model_recovery(database, tmp_path, r
     corrupt.write_bytes(b"invalid model")
     url = "/tickets/old"
     async with running_client(database, model_path=corrupt) as broken:
-        prediction = (await broken.post(url + "/triage")).json()
+        decision = (await broken.post(url + "/triage")).json()
+        assert decision["recommended_action"] == "request_review" and decision["draft"] is None
+        prediction = (await broken.get(url)).json()["classification"]
         assert prediction["category"] == "unknown" and prediction["reason"] == "model_unavailable"
         assert prediction["confidence_score"] is None
-        assert (await broken.get(url)).json()["classification"] == prediction
     async with running_client(database) as repaired:
-        prediction = (await repaired.post(url + "/triage")).json()
-        assert prediction["category"] == "transfer"
+        assert (await repaired.post(url + "/triage")).json() == decision
         assert (await repaired.get(url)).json()["classification"] == prediction

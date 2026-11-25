@@ -12,7 +12,8 @@ from context_tools import lookup_context
 
 
 pytestmark = pytest.mark.anyio
-DELIVERY = Classification(category="delivery", reason="model_prediction")
+DELIVERY = Classification(category="delivery", raw_category="delivery", reason="model_prediction",
+                          confidence_score=0.9)
 CARD = STATUS_RECORDS["A17", "delivery"].model_dump()
 
 
@@ -182,9 +183,9 @@ async def test_stored_ticket_lookup(database, running_client, text, account, too
         submission = {"external_id": "scenario", "text": text, "account_ref": account}
         ticket = (await client.post("/tickets", json=submission)).json()
         url = f"/tickets/{ticket['id']}"
-        prediction = (await client.post(url + "/triage")).json()
+        decision = (await client.post(url + "/triage")).json()
         stored = (await client.get(url)).json()
-        assert stored["classification"] == prediction
+        assert stored["decision"] == decision
         result = stored["lookup"]
         assert result["tool"] == tool
         assert result["attempts"] == (0 if expected == "missing_account_ref" else 1)
@@ -200,7 +201,7 @@ async def test_stored_ticket_lookup(database, running_client, text, account, too
         pytest.fail(f"Replay attempted {request.url.path}")
 
     async with running_client(database, context_transport=httpx.MockTransport(unexpected_lookup)) as client:
-        assert (await client.post(url + "/triage")).json() == prediction
+        assert (await client.post(url + "/triage")).json() == decision
         assert (await client.get(url)).json() == stored
 
 
@@ -231,5 +232,7 @@ async def test_enrich_existing_step_two_classification(database, running_client)
         db.execute("""INSERT INTO tickets VALUES ('old', 'old', 'Where is my card?', 'A17',
                       'classified', ?)""", (DELIVERY.model_dump_json(),))
     async with running_client(database) as client:
-        assert (await client.post("/tickets/old/triage")).json() == DELIVERY.model_dump()
-        assert (await client.get("/tickets/old")).json()["lookup"]["evidence"] == CARD
+        assert (await client.post("/tickets/old/triage")).json()["recommended_action"] == "prepare_reply"
+        stored = (await client.get("/tickets/old")).json()
+        assert stored["classification"] == DELIVERY.model_dump()
+        assert stored["lookup"]["evidence"] == CARD

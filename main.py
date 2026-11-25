@@ -20,9 +20,11 @@ from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, field_validator
 from classification import MODEL_PATH, Classification, Classifier, classify
 from context_api import router as context_router
 from context_tools import Lookup, lookup_context
+from policy import Decision, PreparedReply, after_lookup, before_lookup
 
 
 LOOKUP_ADAPTER = TypeAdapter(Lookup)
+DECISION_ADAPTER = TypeAdapter(Decision)
 
 
 class TicketSubmission(BaseModel):
@@ -42,9 +44,10 @@ class TicketSubmission(BaseModel):
 
 class Ticket(TicketSubmission):
     id: str
-    state: Literal["received", "classified"]
+    state: Literal["received", "classified", "draft_ready", "pending_review"]
     classification: Classification | None = None
     lookup: Lookup | None = None
+    decision: Decision | None = None
 
 
 def ticket_from_row(row: sqlite3.Row) -> Ticket:
@@ -55,6 +58,9 @@ def ticket_from_row(row: sqlite3.Row) -> Ticket:
     lookup = fields.pop("lookup")
     if lookup is not None:
         fields["lookup"] = LOOKUP_ADAPTER.validate_json(lookup)
+    decision = fields.pop("decision")
+    if decision is not None:
+        fields["decision"] = DECISION_ADAPTER.validate_json(decision)
     return Ticket(**fields)
 
 
@@ -86,6 +92,8 @@ def create_app(db_path: Path = Path("tickets.sqlite3"), *, model_path: Path = MO
                 db.execute("ALTER TABLE tickets ADD COLUMN classification TEXT")
             if "lookup" not in columns:
                 db.execute("ALTER TABLE tickets ADD COLUMN lookup TEXT")
+            if "decision" not in columns:
+                db.execute("ALTER TABLE tickets ADD COLUMN decision TEXT")
         app.state.classifier = Classifier.load(model_path)
         base_url = context_base_url or os.getenv("TRIAGE_CONTEXT_URL")
         transport = context_transport
@@ -141,32 +149,38 @@ def create_app(db_path: Path = Path("tickets.sqlite3"), *, model_path: Path = MO
         with closing(connect()) as db:
             return find_ticket(db, id)
 
-    def save_triage(ticket: Ticket, prediction: Classification, lookup: Lookup | None) -> Classification:
+    def save_triage(ticket_id: str, prediction: Classification, lookup: Lookup | None,
+                    decision: Decision) -> Decision:
+        state = "draft_ready" if isinstance(decision, PreparedReply) else "pending_review"
         with closing(connect()) as db, db:
-            # Publish both together; the first completed lookup wins on concurrent replay.
+            # The winning transaction publishes the decision and its inputs together.
             cursor = db.execute(
-                """UPDATE tickets SET state = 'classified', classification = ?, lookup = ?
-                   WHERE id = ? AND classification IS ? AND lookup IS NULL""",
-                (prediction.model_dump_json(), lookup.model_dump_json() if lookup else None,
-                 ticket.id, ticket.classification.model_dump_json() if ticket.classification else None),
+                """UPDATE tickets SET state = ?, classification = ?, lookup = ?, decision = ?
+                   WHERE id = ? AND decision IS NULL""",
+                (state, prediction.model_dump_json(), lookup.model_dump_json() if lookup else None,
+                 decision.model_dump_json(), ticket_id),
             )
             if cursor.rowcount:
-                return prediction
-            return find_ticket(db, ticket.id).classification
+                return decision
+            return find_ticket(db, ticket_id).decision
 
     @app.post("/tickets/{id}/triage", responses={404: {"description": "Ticket not found"}})
-    async def triage_ticket(id: str) -> Classification:
-        """Classify and look up relevant context. GET the ticket to inspect the stored lookup."""
+    async def triage_ticket(id: str) -> Decision:
+        """Prepare an evidence-backed draft or request review. Replays return the stored decision."""
         ticket = await run_in_threadpool(get_ticket, id)
+        if ticket.decision is not None:
+            return ticket.decision
+        model = app.state.classifier
         prediction = ticket.classification
-        if ticket.lookup is not None:
-            return prediction
-        if prediction is None or (prediction.reason == "model_unavailable" and app.state.classifier):
-            prediction = await run_in_threadpool(classify, ticket.text, app.state.classifier)
-        lookup = await lookup_context(app.state.context_client, prediction, ticket.text, ticket.account_ref)
-        if prediction == ticket.classification and lookup is None:
-            return prediction
-        return await run_in_threadpool(save_triage, ticket, prediction, lookup)
+        if prediction is None or (prediction.reason == "model_unavailable" and model):
+            prediction = await run_in_threadpool(classify, ticket.text, model)
+        decision = before_lookup(ticket.text, prediction, model.threshold if model else None)
+        lookup = ticket.lookup
+        if decision is None:
+            if lookup is None:
+                lookup = await lookup_context(app.state.context_client, prediction, ticket.text, ticket.account_ref)
+            decision = after_lookup(prediction, ticket.text, ticket.account_ref, lookup)
+        return await run_in_threadpool(save_triage, ticket.id, prediction, lookup, decision)
 
     return app
 
