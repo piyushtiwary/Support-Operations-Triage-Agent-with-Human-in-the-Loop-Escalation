@@ -1,0 +1,81 @@
+{
+  "card_sent": {
+    "action": "prepare_reply",
+    "evidence_id": "card-A17@v1",
+    "status": "dispatched",
+    "fact": "Your card has been dispatched.",
+    "next_step": "Check the dispatch date in card tracking."
+  },
+  "card_processing": {
+    "action": "prepare_reply",
+    "evidence_id": "card-B42@v1",
+    "status": "processing",
+    "fact": "Your card is being processed.",
+    "next_step": "Check the dispatch date in card tracking."
+  },
+  "delivery_time": {
+    "action": "prepare_reply",
+    "evidence_id": "card-delivery@v1",
+    "fact": "Standard card delivery usually takes 5 to 7 business days after dispatch.",
+    "next_step": "Check the dispatch date in card tracking."
+  },
+  "transfer_pending": {
+    "action": "prepare_reply",
+    "evidence_id": "transfer-A17@v1",
+    "status": "pending",
+    "fact": "Your transfer is pending.",
+    "next_step": "Check the transfer details for its submission date."
+  },
+  "transfer_time": {
+    "action": "prepare_reply",
+    "evidence_id": "bank-transfer@v1",
+    "fact": "Standard bank transfers usually take 1 to 3 business days.",
+    "next_step": "Check the transfer details for its submission date."
+  },
+  "mobile": {
+    "action": "prepare_reply",
+    "evidence_id": "mobile-card-tracking@v1",
+    "fact": "The mobile app can freeze when opening the card tracking screen.",
+    "next_step": "Open card tracking in the web app."
+  },
+  "delivery_exception": {
+    "action": "request_review",
+    "next_step": "Have an operator verify delivery options before promising a date or upgrade."
+  },
+  "transfer_exception": {
+    "action": "request_review",
+    "next_step": "Have an operator investigate the transfer before offering tracing or acceleration."
+  },
+  "security": {
+    "action": "request_review",
+    "next_step": "Refer to security for verification of the reported incident."
+  },
+  "billing_dispute": {
+    "action": "request_review",
+    "next_step": "Have billing reconcile the disputed charges."
+  },
+  "data_loss": {
+    "action": "request_review",
+    "next_step": "Investigate the affected records."
+  },
+  "clarify": {
+    "action": "request_review",
+    "next_step": "Clarify the request with the customer."
+  },
+  "status_outage": {
+    "action": "request_review",
+    "next_step": "Verify card dispatch manually after the outage."
+  },
+  "status_invalid": {
+    "action": "request_review",
+    "next_step": "Verify transfer status manually after invalid data."
+  },
+  "status_mismatch": {
+    "action": "request_review",
+    "next_step": "Verify the card record belongs to the right account."
+  },
+  "book_outage": {
+    "action": "request_review",
+    "next_step": "Verify transfer guidance manually after the unavailable lookup."
+  }
+}

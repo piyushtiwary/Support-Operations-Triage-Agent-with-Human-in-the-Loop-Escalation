@@ -1,0 +1,64 @@
+{"id":"test-8","account_ref":"A17"}
+{"id":"test-2","account_ref":"A17"}
+{"id":"test-18","account_ref":"A17"}
+{"id":"test-16","account_ref":"A17"}
+{"id":"test-15","account_ref":"A17"}
+{"id":"test-289","account_ref":"A17"}
+{"id":"test-287","account_ref":"A17"}
+{"id":"test-315","account_ref":"A17"}
+{"id":"test-286","account_ref":"A17"}
+{"id":"test-318","account_ref":"A17"}
+{"id":"test-1428","account_ref":"A17"}
+{"id":"test-1403","account_ref":"A17"}
+{"id":"test-1402","account_ref":"A17"}
+{"id":"test-1406","account_ref":"A17"}
+{"id":"test-1414","account_ref":"A17"}
+{"id":"test-453","account_ref":"A17"}
+{"id":"test-475","account_ref":"A17"}
+{"id":"test-467","account_ref":"A17"}
+{"id":"test-455","account_ref":"A17"}
+{"id":"test-469","account_ref":"A17"}
+{"id":"test-175","account_ref":"A17"}
+{"id":"test-193","account_ref":"A17"}
+{"id":"test-199","account_ref":"A17"}
+{"id":"test-162","account_ref":"A17"}
+{"id":"test-196","account_ref":"A17"}
+{"id":"test-1982","account_ref":"A17"}
+{"id":"test-1978","account_ref":"A17"}
+{"id":"test-1970","account_ref":"A17"}
+{"id":"test-1974","account_ref":"A17"}
+{"id":"test-1967","account_ref":"A17"}
+{"id":"test-1878","account_ref":"A17"}
+{"id":"test-1858","account_ref":"A17"}
+{"id":"test-1841","account_ref":"A17"}
+{"id":"test-1851","account_ref":"A17"}
+{"id":"test-1868","account_ref":"A17"}
+{"id":"test-2046","account_ref":"A17"}
+{"id":"test-2065","account_ref":"A17"}
+{"id":"test-2047","account_ref":"A17"}
+{"id":"test-2063","account_ref":"A17"}
+{"id":"test-2079","account_ref":"A17"}
+{"id":"reliability-01","text":"Could you look up the dispatch status for my replacement bank card?","account_ref":"B42"}
+{"id":"reliability-02","text":"How many working days does standard card delivery usually take?","account_ref":null}
+{"id":"reliability-03","text":"Where can I see whether the bank transfer I sent is pending?","account_ref":"A17"}
+{"id":"reliability-04","text":"The mobile app freezes every time I go into the card tracking screen.","account_ref":null}
+{"id":"reliability-05","text":"The bakery sale appears on my statement twice for one loaf.","account_ref":"A17"}
+{"id":"reliability-06","text":"There is an extra charge next to my grocery purchase.","account_ref":"A17"}
+{"id":"reliability-07","text":"A single cinema ticket left two identical debits in my ledger.","account_ref":"A17"}
+{"id":"reliability-08","text":"Please investigate why I was billed twice for the taxi.","account_ref":"A17"}
+{"id":"reliability-09","text":"A stranger bought concert tickets with my bank card.","account_ref":"A17"}
+{"id":"reliability-10","text":"My wallet was taken on the train and my card was inside.","account_ref":"A17"}
+{"id":"reliability-11","text":"All my transaction records disappeared after I signed back in.","account_ref":"A17"}
+{"id":"reliability-12","text":"Yesterday's entries vanished from my previously complete payment history.","account_ref":"A17"}
+{"id":"reliability-13","text":"Could you change the colour scheme on my statement?","account_ref":null}
+{"id":"reliability-14","text":"It happened again when I tried it this morning.","account_ref":null}
+{"id":"reliability-15","text":"Is a pet insurance policy available through you?","account_ref":null}
+{"id":"reliability-16","text":"Zyvex qorrim blivax.","account_ref":null}
+{"id":"reliability-17","text":"Has my new bank card already been dispatched?","account_ref":"A17","fault":"503"}
+{"id":"reliability-18","text":"My transfer is still pending, please check it.","account_ref":"A17","fault":"malformed"}
+{"id":"reliability-19","text":"Could you check if my replacement card is on its way?","account_ref":"A17","fault":"wrong_account"}
+{"id":"reliability-20","text":"How many days does a standard bank transfer usually take?","account_ref":null,"fault":"timeout"}
+{"id":"reliability-21","text":"My new card is late and someone else used my account last night.","account_ref":"A17"}
+{"id":"reliability-22","text":"The transfer is pending and I was charged twice for one purchase.","account_ref":"A17"}
+{"id":"reliability-23","text":"I am tracking my new card. The shop receipts in my account have all vanished.","account_ref":"A17"}
+{"id":"reliability-24","text":"No fraud. Please check if my new bank card has been dispatched.","account_ref":"A17"}

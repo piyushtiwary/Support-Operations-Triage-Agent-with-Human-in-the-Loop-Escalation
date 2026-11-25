@@ -1,0 +1,505 @@
+{
+  "manifest_sha256": "df55fc7e048bb1ed6806ca16980871b76aa0d71eb2c5fe807a70cb4138b4ed16",
+  "wording_reviews_sha256": "8caea8ca4c53e0d3837c2b2d3f4597512622239d28fa205720bb0c7d9cbeeed7",
+  "seed": 42,
+  "revision": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+  "classifier_version": "sha256:23ea40db1c5ea6b96ad4524e18384da9c417e9d23a4b10bf647d599cf4522433",
+  "threshold": 0.48,
+  "ruleset": "triage-policy-v1",
+  "environment": {
+    "platform": "Windows-11-10.0.26300-SP0",
+    "cpu": "AMD64 Family 23 Model 24 Stepping 1, AuthenticAMD",
+    "logical_cpus": 8,
+    "python": "3.12.13",
+    "sqlite": "3.53.1",
+    "packages": {
+      "scikit-learn": "1.9.1",
+      "numpy": "2.5.5",
+      "scipy": "1.18.1",
+      "fastapi": "0.165.0",
+      "pydantic": "2.14.4",
+      "httpx": "0.28.1",
+      "uvicorn": "0.54.0",
+      "pytest": "9.2.0"
+    }
+  },
+  "classification": {
+    "keyword": {
+      "confusion_counts": {
+        "delivery": {
+          "delivery": 28,
+          "transfer": 0,
+          "billing_dispute": 0,
+          "security": 3,
+          "unknown": 49
+        },
+        "transfer": {
+          "delivery": 1,
+          "transfer": 63,
+          "billing_dispute": 1,
+          "security": 0,
+          "unknown": 15
+        },
+        "billing_dispute": {
+          "delivery": 0,
+          "transfer": 0,
+          "billing_dispute": 29,
+          "security": 0,
+          "unknown": 51
+        },
+        "security": {
+          "delivery": 0,
+          "transfer": 0,
+          "billing_dispute": 0,
+          "security": 36,
+          "unknown": 44
+        },
+        "unknown": {
+          "delivery": 0,
+          "transfer": 0,
+          "billing_dispute": 0,
+          "security": 0,
+          "unknown": 0
+        }
+      },
+      "correct": 156,
+      "total": 320,
+      "macro_f1_four_categories": 0.6317987732720599,
+      "accuracy": {
+        "numerator": 156,
+        "denominator": 320,
+        "percent": 48.75
+      },
+      "per_class": {
+        "delivery": {
+          "support": 80,
+          "recall": {
+            "numerator": 28,
+            "denominator": 80,
+            "percent": 35.0
+          },
+          "precision": {
+            "numerator": 28,
+            "denominator": 29,
+            "percent": 96.55
+          }
+        },
+        "transfer": {
+          "support": 80,
+          "recall": {
+            "numerator": 63,
+            "denominator": 80,
+            "percent": 78.75
+          },
+          "precision": {
+            "numerator": 63,
+            "denominator": 63,
+            "percent": 100.0
+          }
+        },
+        "billing_dispute": {
+          "support": 80,
+          "recall": {
+            "numerator": 29,
+            "denominator": 80,
+            "percent": 36.25
+          },
+          "precision": {
+            "numerator": 29,
+            "denominator": 30,
+            "percent": 96.67
+          }
+        },
+        "security": {
+          "support": 80,
+          "recall": {
+            "numerator": 36,
+            "denominator": 80,
+            "percent": 45.0
+          },
+          "precision": {
+            "numerator": 36,
+            "denominator": 39,
+            "percent": 92.31
+          }
+        }
+      }
+    },
+    "raw": {
+      "confusion_counts": {
+        "delivery": {
+          "delivery": 78,
+          "transfer": 0,
+          "billing_dispute": 0,
+          "security": 2,
+          "unknown": 0
+        },
+        "transfer": {
+          "delivery": 1,
+          "transfer": 79,
+          "billing_dispute": 0,
+          "security": 0,
+          "unknown": 0
+        },
+        "billing_dispute": {
+          "delivery": 1,
+          "transfer": 0,
+          "billing_dispute": 79,
+          "security": 0,
+          "unknown": 0
+        },
+        "security": {
+          "delivery": 1,
+          "transfer": 0,
+          "billing_dispute": 2,
+          "security": 77,
+          "unknown": 0
+        },
+        "unknown": {
+          "delivery": 0,
+          "transfer": 0,
+          "billing_dispute": 0,
+          "security": 0,
+          "unknown": 0
+        }
+      },
+      "correct": 313,
+      "total": 320,
+      "macro_f1_four_categories": 0.9781436774874019,
+      "accuracy": {
+        "numerator": 313,
+        "denominator": 320,
+        "percent": 97.81
+      },
+      "per_class": {
+        "delivery": {
+          "support": 80,
+          "recall": {
+            "numerator": 78,
+            "denominator": 80,
+            "percent": 97.5
+          },
+          "precision": {
+            "numerator": 78,
+            "denominator": 81,
+            "percent": 96.3
+          }
+        },
+        "transfer": {
+          "support": 80,
+          "recall": {
+            "numerator": 79,
+            "denominator": 80,
+            "percent": 98.75
+          },
+          "precision": {
+            "numerator": 79,
+            "denominator": 79,
+            "percent": 100.0
+          }
+        },
+        "billing_dispute": {
+          "support": 80,
+          "recall": {
+            "numerator": 79,
+            "denominator": 80,
+            "percent": 98.75
+          },
+          "precision": {
+            "numerator": 79,
+            "denominator": 81,
+            "percent": 97.53
+          }
+        },
+        "security": {
+          "support": 80,
+          "recall": {
+            "numerator": 77,
+            "denominator": 80,
+            "percent": 96.25
+          },
+          "precision": {
+            "numerator": 77,
+            "denominator": 79,
+            "percent": 97.47
+          }
+        }
+      }
+    },
+    "model": {
+      "confusion_counts": {
+        "delivery": {
+          "delivery": 77,
+          "transfer": 0,
+          "billing_dispute": 0,
+          "security": 2,
+          "unknown": 1
+        },
+        "transfer": {
+          "delivery": 1,
+          "transfer": 79,
+          "billing_dispute": 0,
+          "security": 0,
+          "unknown": 0
+        },
+        "billing_dispute": {
+          "delivery": 0,
+          "transfer": 0,
+          "billing_dispute": 78,
+          "security": 0,
+          "unknown": 2
+        },
+        "security": {
+          "delivery": 1,
+          "transfer": 0,
+          "billing_dispute": 0,
+          "security": 75,
+          "unknown": 4
+        },
+        "unknown": {
+          "delivery": 0,
+          "transfer": 0,
+          "billing_dispute": 0,
+          "security": 0,
+          "unknown": 0
+        }
+      },
+      "correct": 309,
+      "total": 320,
+      "macro_f1_four_categories": 0.976254983958537,
+      "accuracy": {
+        "numerator": 309,
+        "denominator": 320,
+        "percent": 96.56
+      },
+      "per_class": {
+        "delivery": {
+          "support": 80,
+          "recall": {
+            "numerator": 77,
+            "denominator": 80,
+            "percent": 96.25
+          },
+          "precision": {
+            "numerator": 77,
+            "denominator": 79,
+            "percent": 97.47
+          }
+        },
+        "transfer": {
+          "support": 80,
+          "recall": {
+            "numerator": 79,
+            "denominator": 80,
+            "percent": 98.75
+          },
+          "precision": {
+            "numerator": 79,
+            "denominator": 79,
+            "percent": 100.0
+          }
+        },
+        "billing_dispute": {
+          "support": 80,
+          "recall": {
+            "numerator": 78,
+            "denominator": 80,
+            "percent": 97.5
+          },
+          "precision": {
+            "numerator": 78,
+            "denominator": 78,
+            "percent": 100.0
+          }
+        },
+        "security": {
+          "support": 80,
+          "recall": {
+            "numerator": 75,
+            "denominator": 80,
+            "percent": 93.75
+          },
+          "precision": {
+            "numerator": 75,
+            "denominator": 77,
+            "percent": 97.4
+          }
+        }
+      }
+    }
+  },
+  "quality": {
+    "public": {
+      "correct_routine_drafts": {
+        "numerator": 7,
+        "denominator": 15,
+        "percent": 46.67
+      },
+      "draft_precision": {
+        "numerator": 7,
+        "denominator": 20,
+        "percent": 35.0
+      },
+      "risk_reviews": {
+        "numerator": 20,
+        "denominator": 20,
+        "percent": 100.0
+      },
+      "by_risk": {
+        "billing_dispute": {
+          "numerator": 10,
+          "denominator": 10,
+          "percent": 100.0
+        },
+        "security": {
+          "numerator": 10,
+          "denominator": 10,
+          "percent": 100.0
+        },
+        "data_loss": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "mixed": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      },
+      "unnecessary_reviews": {
+        "numerator": 0,
+        "denominator": 15,
+        "percent": 0.0
+      },
+      "durable_reviews": {
+        "numerator": 20,
+        "denominator": 20,
+        "percent": 100.0
+      },
+      "fault_drafts_without_evidence": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "case_passes": {
+        "numerator": 27,
+        "denominator": 40,
+        "percent": 67.5
+      },
+      "no_decision": 0
+    },
+    "reliability": {
+      "correct_routine_drafts": {
+        "numerator": 2,
+        "denominator": 5,
+        "percent": 40.0
+      },
+      "draft_precision": {
+        "numerator": 2,
+        "denominator": 3,
+        "percent": 66.67
+      },
+      "risk_reviews": {
+        "numerator": 10,
+        "denominator": 11,
+        "percent": 90.91
+      },
+      "by_risk": {
+        "billing_dispute": {
+          "numerator": 5,
+          "denominator": 5,
+          "percent": 100.0
+        },
+        "security": {
+          "numerator": 3,
+          "denominator": 3,
+          "percent": 100.0
+        },
+        "data_loss": {
+          "numerator": 2,
+          "denominator": 3,
+          "percent": 66.67
+        },
+        "mixed": {
+          "numerator": 2,
+          "denominator": 3,
+          "percent": 66.67
+        }
+      },
+      "unnecessary_reviews": {
+        "numerator": 3,
+        "denominator": 5,
+        "percent": 60.0
+      },
+      "durable_reviews": {
+        "numerator": 21,
+        "denominator": 21,
+        "percent": 100.0
+      },
+      "fault_drafts_without_evidence": {
+        "numerator": 0,
+        "denominator": 4,
+        "percent": 0.0
+      },
+      "case_passes": {
+        "numerator": 15,
+        "denominator": 24,
+        "percent": 62.5
+      },
+      "no_decision": 0
+    }
+  },
+  "public_effort": {
+    "case_mix": {
+      "verification": 7,
+      "escalation": 20,
+      "rework": 13
+    },
+    "base": {
+      "seconds_per_case": {
+        "manual": 120,
+        "verification": 20,
+        "escalation": 100,
+        "rework": 150
+      },
+      "manual_seconds": 4800,
+      "assisted_seconds": 4090,
+      "saving_percent": 14.79
+    },
+    "slower_review": {
+      "seconds_per_case": {
+        "manual": 120,
+        "verification": 30,
+        "escalation": 150,
+        "rework": 150
+      },
+      "manual_seconds": 4800,
+      "assisted_seconds": 5160,
+      "saving_percent": -7.5
+    }
+  },
+  "warmup_passes": 1,
+  "measured_passes": 5,
+  "latency": {
+    "healthy": {
+      "n": 305,
+      "p50_ms": 217.90459996555,
+      "p95_ms": 926.9812399987135
+    },
+    "faulted": {
+      "n": 15,
+      "p50_ms": 492.8226999472827,
+      "p95_ms": 1250.3753200173378
+    }
+  },
+  "usage": {
+    "tickets_with_audit": 64,
+    "tickets": 64,
+    "provider_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_usd": 0,
+    "usd_per_audited_ticket": 0.0
+  }
+}

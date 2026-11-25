@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "seed": 42,
+  "revision": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+  "files": {
+    "split": {
+      "path": "../banking77/manifest.json",
+      "sha256": "c8d28c93be48af5f1d017c18d9510598c82e3ee5f2b6405fcbdb90b9b9399cf7"
+    },
+    "train": {
+      "path": "../banking77/train.csv",
+      "sha256": "e728cb9957e57d67cc7b9b2263d224d666b78abb3547c3954fe6129c025dc40f"
+    },
+    "dev": {
+      "path": "../banking77/dev.csv",
+      "sha256": "246df608cf187ca102799bca5fef44cd576076b58b9244610bbd63a89c50e719"
+    },
+    "test": {
+      "path": "../banking77/test.csv",
+      "sha256": "9aa8137c4861a2c2a4e11bec2b9e11775cc26c3870277515f971a492ffafecfc"
+    },
+    "cases": {
+      "path": "cases.jsonl",
+      "sha256": "2b1f6dc8fe7b9bcb554c43c820c57d14c69b87d271e142651c1e4656d07ceed0"
+    },
+    "key": {
+      "path": "key.jsonl",
+      "sha256": "1e04e34fb937fcc55ef50f41076c093eb50d0550e43cbc8d08294395e8f07a13"
+    },
+    "rubrics": {
+      "path": "rubrics.json",
+      "sha256": "57aedf6cfc7a66b3307d4fff477891c940eede2d80647abf8bd9f965cebaa3eb"
+    }
+  }
+}

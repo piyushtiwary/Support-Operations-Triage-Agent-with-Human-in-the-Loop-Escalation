@@ -1,0 +1,64 @@
+{"id":"test-8","category":"delivery","rubric":"card_sent","group":"public","risks":[]}
+{"id":"test-2","category":"delivery","rubric":"card_sent","group":"public","risks":[]}
+{"id":"test-18","category":"delivery","rubric":"card_sent","group":"public","risks":[]}
+{"id":"test-16","category":"delivery","rubric":"card_sent","group":"public","risks":[]}
+{"id":"test-15","category":"delivery","rubric":"card_sent","group":"public","risks":[]}
+{"id":"test-289","category":"delivery","rubric":"delivery_time","group":"public","risks":[],"criterion":"Distinguish the standard window from a US-specific estimate."}
+{"id":"test-287","category":"delivery","rubric":"delivery_time","group":"public","risks":[],"criterion":"Distinguish the standard window from a US-specific estimate."}
+{"id":"test-315","category":"delivery","rubric":"delivery_exception","group":"public","risks":[],"criterion":"Saturday deadline is outside seeded guidance."}
+{"id":"test-286","category":"delivery","rubric":"delivery_exception","group":"public","risks":[],"criterion":"Expediting is outside seeded guidance."}
+{"id":"test-318","category":"delivery","rubric":"delivery_exception","group":"public","risks":[],"criterion":"Scheduling is outside seeded guidance."}
+{"id":"test-1428","category":"security","rubric":"security","group":"public","risks":["security"]}
+{"id":"test-1403","category":"security","rubric":"security","group":"public","risks":["security"]}
+{"id":"test-1402","category":"security","rubric":"security","group":"public","risks":["security"]}
+{"id":"test-1406","category":"security","rubric":"security","group":"public","risks":["security"]}
+{"id":"test-1414","category":"security","rubric":"security","group":"public","risks":["security"]}
+{"id":"test-453","category":"security","rubric":"security","group":"public","risks":["security"]}
+{"id":"test-475","category":"security","rubric":"security","group":"public","risks":["security"]}
+{"id":"test-467","category":"security","rubric":"security","group":"public","risks":["security"]}
+{"id":"test-455","category":"security","rubric":"security","group":"public","risks":["security"]}
+{"id":"test-469","category":"security","rubric":"security","group":"public","risks":["security"]}
+{"id":"test-175","category":"billing_dispute","rubric":"billing_dispute","group":"public","risks":["billing_dispute"]}
+{"id":"test-193","category":"billing_dispute","rubric":"billing_dispute","group":"public","risks":["billing_dispute"]}
+{"id":"test-199","category":"billing_dispute","rubric":"billing_dispute","group":"public","risks":["billing_dispute"]}
+{"id":"test-162","category":"billing_dispute","rubric":"billing_dispute","group":"public","risks":["billing_dispute"]}
+{"id":"test-196","category":"billing_dispute","rubric":"billing_dispute","group":"public","risks":["billing_dispute"]}
+{"id":"test-1982","category":"billing_dispute","rubric":"billing_dispute","group":"public","risks":["billing_dispute"]}
+{"id":"test-1978","category":"billing_dispute","rubric":"billing_dispute","group":"public","risks":["billing_dispute"]}
+{"id":"test-1970","category":"billing_dispute","rubric":"billing_dispute","group":"public","risks":["billing_dispute"]}
+{"id":"test-1974","category":"billing_dispute","rubric":"billing_dispute","group":"public","risks":["billing_dispute"]}
+{"id":"test-1967","category":"billing_dispute","rubric":"billing_dispute","group":"public","risks":["billing_dispute"]}
+{"id":"test-1878","category":"transfer","rubric":"transfer_pending","group":"public","risks":[]}
+{"id":"test-1858","category":"transfer","rubric":"transfer_time","group":"public","risks":[]}
+{"id":"test-1841","category":"transfer","rubric":"transfer_pending","group":"public","risks":[]}
+{"id":"test-1851","category":"transfer","rubric":"transfer_exception","group":"public","risks":[],"criterion":"Changing transfer speed requires investigation."}
+{"id":"test-1868","category":"transfer","rubric":"transfer_exception","group":"public","risks":[],"criterion":"A missing incoming payment cannot be traced to the generic pending record."}
+{"id":"test-2046","category":"transfer","rubric":"transfer_time","group":"public","risks":[]}
+{"id":"test-2065","category":"transfer","rubric":"transfer_time","group":"public","risks":[],"criterion":"Distinguish the standard window from a US-specific estimate."}
+{"id":"test-2047","category":"transfer","rubric":"transfer_time","group":"public","risks":[],"criterion":"Address the regional comparison or explicitly explain the limit of the evidence."}
+{"id":"test-2063","category":"transfer","rubric":"transfer_time","group":"public","risks":[]}
+{"id":"test-2079","category":"transfer","rubric":"transfer_time","group":"public","risks":[],"criterion":"Distinguish the standard window from a China-specific estimate."}
+{"id":"reliability-01","category":"delivery","rubric":"card_processing","group":"routine","risks":[]}
+{"id":"reliability-02","category":"delivery","rubric":"delivery_time","group":"routine","risks":[]}
+{"id":"reliability-03","category":"transfer","rubric":"transfer_pending","group":"routine","risks":[]}
+{"id":"reliability-04","category":"technical_issue","rubric":"mobile","group":"routine","risks":[]}
+{"id":"reliability-05","category":"billing_dispute","rubric":"billing_dispute","group":"billing","risks":["billing_dispute"]}
+{"id":"reliability-06","category":"billing_dispute","rubric":"billing_dispute","group":"billing","risks":["billing_dispute"]}
+{"id":"reliability-07","category":"billing_dispute","rubric":"billing_dispute","group":"billing","risks":["billing_dispute"]}
+{"id":"reliability-08","category":"billing_dispute","rubric":"billing_dispute","group":"billing","risks":["billing_dispute"]}
+{"id":"reliability-09","category":"security","rubric":"security","group":"security_data","risks":["security"]}
+{"id":"reliability-10","category":"security","rubric":"security","group":"security_data","risks":["security"]}
+{"id":"reliability-11","category":"data_loss","rubric":"data_loss","group":"security_data","risks":["data_loss"]}
+{"id":"reliability-12","category":"data_loss","rubric":"data_loss","group":"security_data","risks":["data_loss"]}
+{"id":"reliability-13","category":"unknown","rubric":"clarify","group":"ambiguity","risks":[]}
+{"id":"reliability-14","category":"unknown","rubric":"clarify","group":"ambiguity","risks":[]}
+{"id":"reliability-15","category":"unknown","rubric":"clarify","group":"ambiguity","risks":[]}
+{"id":"reliability-16","category":"unknown","rubric":"clarify","group":"ambiguity","risks":[]}
+{"id":"reliability-17","category":"delivery","rubric":"status_outage","group":"fault","risks":[]}
+{"id":"reliability-18","category":"transfer","rubric":"status_invalid","group":"fault","risks":[]}
+{"id":"reliability-19","category":"delivery","rubric":"status_mismatch","group":"fault","risks":[]}
+{"id":"reliability-20","category":"transfer","rubric":"book_outage","group":"fault","risks":[]}
+{"id":"reliability-21","category":"security","rubric":"security","group":"mixed","risks":["security","mixed"]}
+{"id":"reliability-22","category":"billing_dispute","rubric":"billing_dispute","group":"mixed","risks":["billing_dispute","mixed"]}
+{"id":"reliability-23","category":"data_loss","rubric":"data_loss","group":"mixed","risks":["data_loss","mixed"]}
+{"id":"reliability-24","category":"delivery","rubric":"card_sent","group":"mixed","risks":[]}

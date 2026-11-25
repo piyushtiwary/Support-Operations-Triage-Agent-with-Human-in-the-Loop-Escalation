@@ -52,5 +52,5 @@ development tickets and identified five of eight unsupported examples.
 The mixed smoke ticket “My card hasn't arrived and someone used it” currently
 predicts `delivery`. Its security signal illustrates why the later routing
 policy must inspect the original ticket text.
-These are development results. Official test predictions are reserved for
-the release benchmark.
+These are development results. The [release evaluation](../EVALUATION.md)
+reports held-out classification, end-to-end draft quality and interview replay instructions.
