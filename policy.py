@@ -10,11 +10,15 @@ from context_api import RUNBOOKS, Nonblank, RunbookEvidence, StatusEvidence
 from context_tools import Found, Lookup, Unavailable, general_timing
 
 
+Category = ModelCategory | Literal["technical_issue", "unknown", "data_loss"]
+Urgency = Literal["normal", "urgent"]
+
+
 class DecisionFields(BaseModel):
     model_config = ConfigDict(strict=True, extra="forbid")
 
-    category: ModelCategory | Literal["technical_issue", "unknown", "data_loss"]
-    urgency: Literal["normal", "urgent"]
+    category: Category
+    urgency: Urgency
     confidence_score: float | None = Field(ge=0, le=1)
 
 

@@ -14,11 +14,12 @@ def anyio_backend():
 @pytest.fixture
 def running_client():
     @asynccontextmanager
-    async def start(path, **options):
+    async def start(path, *, raise_app_exceptions=True, **options):
         app = create_app(path, **options)
         async with app.router.lifespan_context(app):
             async with httpx.AsyncClient(
-                transport=httpx.ASGITransport(app=app), base_url="http://test"
+                transport=httpx.ASGITransport(app=app, raise_app_exceptions=raise_app_exceptions),
+                base_url="http://test",
             ) as client:
                 yield client
 
