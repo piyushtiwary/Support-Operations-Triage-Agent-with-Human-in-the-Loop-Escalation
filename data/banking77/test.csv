@@ -1,0 +1,321 @@
+id,intent,category,text
+test-1,card_arrival,delivery,How do I locate my card?
+test-2,card_arrival,delivery,"I still have not received my new card, I ordered over a week ago."
+test-3,card_arrival,delivery,I ordered a card but it has not arrived. Help please!
+test-4,card_arrival,delivery,Is there a way to know when my card will arrive?
+test-5,card_arrival,delivery,My card has not arrived yet.
+test-6,card_arrival,delivery,When will I get my card?
+test-7,card_arrival,delivery,Do you know if there is a tracking number for the new card you sent me?
+test-8,card_arrival,delivery,i have not received my card
+test-9,card_arrival,delivery,still waiting on that card
+test-10,card_arrival,delivery,Is it normal to have to wait over a week for my new card?
+test-11,card_arrival,delivery,How do I track my card?
+test-12,card_arrival,delivery,How long does a card delivery take?
+test-13,card_arrival,delivery,I still don't have my card after 2 weeks.  What should I do?
+test-14,card_arrival,delivery,still waiting on my new card
+test-15,card_arrival,delivery,I am still waiting for my card after 1 week.  Is this ok?
+test-16,card_arrival,delivery,"I have been waiting longer than expected for my bank card, could you provide information on when it will arrive?"
+test-17,card_arrival,delivery,I've been waiting longer than expected for my card.
+test-18,card_arrival,delivery,Why hasn't my card been delivered?
+test-19,card_arrival,delivery,Where is my new card? I have been waiting a week!
+test-20,card_arrival,delivery,My card still hasn't arrived after 2 weeks. Is it lost?
+test-21,card_arrival,delivery,"I did not get my card yet, is it lost?"
+test-22,card_arrival,delivery,Status of the card I ordered.
+test-23,card_arrival,delivery,How long should my new card take to arrive?
+test-24,card_arrival,delivery,I ordered my card 2 weeks ago and it still isn't here? What do I do?
+test-25,card_arrival,delivery,"My card has not arrived yet, where is it?"
+test-26,card_arrival,delivery,What is the tracking number for my card that was mailed?
+test-27,card_arrival,delivery,I think something went wrong with my card delivery as I haven't received it yet.
+test-28,card_arrival,delivery,"I'm still waiting for delivery of my new card, why is it taking so long?"
+test-29,card_arrival,delivery,"I ordered a card a week ago, and it's still not here. What do I do?"
+test-30,card_arrival,delivery,i want to track the card you sent
+test-31,card_arrival,delivery,My card hasn't arrived yet.
+test-32,card_arrival,delivery,I was expecting my new card and am wondering why I haven't received it yet?
+test-33,card_arrival,delivery,How do I know when my card will arrive?
+test-34,card_arrival,delivery,I'm still waiting on my card to be delivered.
+test-35,card_arrival,delivery,Does the card you sent have a way to track to it?
+test-36,card_arrival,delivery,I ordered a card and I still haven't received it. It's been two weeks. What can I do?
+test-37,card_arrival,delivery,"I'm starting to think my card is lost because it still hasn't arrived, can you help?"
+test-38,card_arrival,delivery,Is there tracking info available?
+test-39,card_arrival,delivery,What is the tracking number for the card you sent?
+test-40,card_arrival,delivery,Where is the tracking number for the card you sent me?
+test-161,extra_charge_on_statement,billing_dispute,My statement has a dollar I have been charged showing up on it.
+test-162,extra_charge_on_statement,billing_dispute,Why is there a fee for an extra pound in my statement?
+test-163,extra_charge_on_statement,billing_dispute,I'm not okay with this fee on my statement.
+test-164,extra_charge_on_statement,billing_dispute,Why is there an extra dollar charged to my account?
+test-165,extra_charge_on_statement,billing_dispute,There is a fee I don't recognize on my statement.
+test-166,extra_charge_on_statement,billing_dispute,I would like a refund on the extra pound I was charged.
+test-167,extra_charge_on_statement,billing_dispute,Can you explain what this random $1 charge is?
+test-168,extra_charge_on_statement,billing_dispute,What is this $1 charge on my statement?
+test-169,extra_charge_on_statement,billing_dispute,Why does my statement have these extra charges?
+test-170,extra_charge_on_statement,billing_dispute,"I do not remember purchasing anything for 1£, and it is on my statement. Can you please tell me what that is about?"
+test-171,extra_charge_on_statement,billing_dispute,I can see an extra 1£ charge on my app. Why did you charge me extra?
+test-172,extra_charge_on_statement,billing_dispute,Can you tell me why I noticed a $1 charge on my statement?
+test-173,extra_charge_on_statement,billing_dispute,When will the $1 transaction be credited to me?
+test-174,extra_charge_on_statement,billing_dispute,Where did this fee come from?
+test-175,extra_charge_on_statement,billing_dispute,"I noticed an extra $1 charge on my statement, can you tell me why that is?"
+test-176,extra_charge_on_statement,billing_dispute,There is an extra $1 charge
+test-177,extra_charge_on_statement,billing_dispute,I need information about an extra €1 fee in my statement.
+test-178,extra_charge_on_statement,billing_dispute,Why is there an extra 1 pound charge on my card?
+test-179,extra_charge_on_statement,billing_dispute,Why are there so many fees on my statement?
+test-180,extra_charge_on_statement,billing_dispute,What would be the reason there's an extra fee on my statement?
+test-181,extra_charge_on_statement,billing_dispute,Where did this 1 euro fee come from?
+test-182,extra_charge_on_statement,billing_dispute,I got a extra €1 fee in my statement
+test-183,extra_charge_on_statement,billing_dispute,I have a 1 euro fee on my statement.
+test-184,extra_charge_on_statement,billing_dispute,Why was I overcharged a pound!?
+test-185,extra_charge_on_statement,billing_dispute,"Something went wrong, I was charged an extra pound?"
+test-186,extra_charge_on_statement,billing_dispute,Where did the extra fee on my statement come from?
+test-187,extra_charge_on_statement,billing_dispute,There is an extra charge on my app that I was not told about or I was aware of!
+test-188,extra_charge_on_statement,billing_dispute,I am seeing an extra fee on my statement what is that for?
+test-189,extra_charge_on_statement,billing_dispute,What is this €1 fee in my statement?
+test-190,extra_charge_on_statement,billing_dispute,"I am a new customer, and I happened to look at my app and there is a charge I am not familiar with.  Could you tell me why the extra charge is there?"
+test-191,extra_charge_on_statement,billing_dispute,For some reason my account's been charged an extra dollar.
+test-192,extra_charge_on_statement,billing_dispute,There is a transaction for $1 and I don't know why it was charged.
+test-193,extra_charge_on_statement,billing_dispute,"Can you help me with a weird charge?  It's a pound charge that never goes away from the statement view on the app I'm using.  It's not described as anything but ""Pending"", and that status has never changed during the last two days."
+test-194,extra_charge_on_statement,billing_dispute,What is the purpose of the extra fee that is showing up on my statement?
+test-195,extra_charge_on_statement,billing_dispute,"$1 extra has been charged on my statement, why is that?"
+test-196,extra_charge_on_statement,billing_dispute,What is the extra  €1 fee in my statement
+test-197,extra_charge_on_statement,billing_dispute,"It's been two weeks, why has the transaction for $1.00 not been reversed?"
+test-198,extra_charge_on_statement,billing_dispute,What is the €1 fee for?
+test-199,extra_charge_on_statement,billing_dispute,I'm quite confused as to what is going on. There is some odd extra pound charge on my statement in the app that's just listed as pending and doesn't go away since a couple days.
+test-200,extra_charge_on_statement,billing_dispute,Can you please check why I am having this extra fee on my statement.
+test-281,card_delivery_estimate,delivery,I need my card now!
+test-282,card_delivery_estimate,delivery,my card was not in the mail again can you advise?
+test-283,card_delivery_estimate,delivery,i need my card quick
+test-284,card_delivery_estimate,delivery,How long will it take to get to me?
+test-285,card_delivery_estimate,delivery,I'm just wondering when my card will get here.
+test-286,card_delivery_estimate,delivery,Can you get me my card fast?
+test-287,card_delivery_estimate,delivery,How long will it take to deliver something to US?
+test-288,card_delivery_estimate,delivery,"I live in the US, how long will it take for delivery?"
+test-289,card_delivery_estimate,delivery,When can I expect my card to be delivered to the US?
+test-290,card_delivery_estimate,delivery,I need my card quickly
+test-291,card_delivery_estimate,delivery,Does delivery to the US take long?
+test-292,card_delivery_estimate,delivery,How long will it take to arrive?
+test-293,card_delivery_estimate,delivery,Can I have my card delivered on a specific day?
+test-294,card_delivery_estimate,delivery,What is the difference between standard and express delivery?
+test-295,card_delivery_estimate,delivery,Can it be delivered by a specific date?
+test-296,card_delivery_estimate,delivery,May I choose when it's delivered?
+test-297,card_delivery_estimate,delivery,I need it delivered on a certain date.
+test-298,card_delivery_estimate,delivery,When should I expect my card?
+test-299,card_delivery_estimate,delivery,How long does it take to get my card? Can I choose when to receive it?
+test-300,card_delivery_estimate,delivery,How long will it take for the card to arrive?
+test-301,card_delivery_estimate,delivery,How fast can you deliver?
+test-302,card_delivery_estimate,delivery,"Ordered awhile back, what is the ETA in the US?"
+test-303,card_delivery_estimate,delivery,How long should I expect for the card to arrive?
+test-304,card_delivery_estimate,delivery,Whats the delivery time to the United States?
+test-305,card_delivery_estimate,delivery,When will the card arrive?
+test-306,card_delivery_estimate,delivery,Send my card as soon as you are able to.
+test-307,card_delivery_estimate,delivery,When are cards delivered?
+test-308,card_delivery_estimate,delivery,How long does shipping take to get to a US destination?
+test-309,card_delivery_estimate,delivery,Can I get my card expedited?
+test-310,card_delivery_estimate,delivery,How long until my card is delivered?
+test-311,card_delivery_estimate,delivery,I need my card to come as soon as possible.
+test-312,card_delivery_estimate,delivery,When can I expect to receive my new card?
+test-313,card_delivery_estimate,delivery,I am waiting for my card to arrive.
+test-314,card_delivery_estimate,delivery,I need my card as soon as possible.
+test-315,card_delivery_estimate,delivery,I need it delivered by Saturday.
+test-316,card_delivery_estimate,delivery,What's the U.S. Delivery time?
+test-317,card_delivery_estimate,delivery,When will my card arrive?
+test-318,card_delivery_estimate,delivery,can I choose a date for delivery?
+test-319,card_delivery_estimate,delivery,Can I make sure my card is delivered on a specific day?
+test-320,card_delivery_estimate,delivery,Can I have it be delivered at a certain time?
+test-441,lost_or_stolen_card,security,"My entire gym bag, including my wallet, was stolen out of my locker today. Everything in my wallet is gone - how do I block the card to make it can't be used?"
+test-442,lost_or_stolen_card,security,I can't find my card and think it may have been stolen.
+test-443,lost_or_stolen_card,security,"Someone stole my card. I need to report it stolen. I made a police report already, but how do I report it with you?"
+test-444,lost_or_stolen_card,security,"I cant find my card, it's gone."
+test-445,lost_or_stolen_card,security,My card is lost! What can I do?
+test-446,lost_or_stolen_card,security,I lost my card
+test-447,lost_or_stolen_card,security,Oh no!  I lost my card!  Help!
+test-448,lost_or_stolen_card,security,"I believe my card has been stolen, what can I do about this situation? It's urgent."
+test-449,lost_or_stolen_card,security,Help! Someone stole my card!
+test-450,lost_or_stolen_card,security,Help.  I have a stolen card!
+test-451,lost_or_stolen_card,security,"card is lost, please help"
+test-452,lost_or_stolen_card,security,How do I report my card stolen?
+test-453,lost_or_stolen_card,security,My card is gone I think it was stolen
+test-454,lost_or_stolen_card,security,Is a copy of the police report necessary for completing the report process?
+test-455,lost_or_stolen_card,security,I lost my wallet today with all my credit cards. Will you please block the card and send a replacement?
+test-456,lost_or_stolen_card,security,How do I deal with a stolen card?
+test-457,lost_or_stolen_card,security,Can you freeze my card it was stolen
+test-458,lost_or_stolen_card,security,Help!  I can't find my card.
+test-459,lost_or_stolen_card,security,What should I do if I lost my card?
+test-460,lost_or_stolen_card,security,I need help with a lost card
+test-461,lost_or_stolen_card,security,I think my card was stolen.
+test-462,lost_or_stolen_card,security,"Someone stole my wallet earlier today, not sure exactly when, probably on Piccadilly circus. Can you check if there were any attempts to use the card and obviously block it?"
+test-463,lost_or_stolen_card,security,I think I lost my card . I dont know how long it has been missing. Can you see if maybe someone else has been using it?
+test-464,lost_or_stolen_card,security,How can I freeze a stolen card?
+test-465,lost_or_stolen_card,security,What should I do if my card is missing?
+test-466,lost_or_stolen_card,security,My bags were stolen. I need a new card but need to cancel the stolen one.
+test-467,lost_or_stolen_card,security,Somehow I am missing my card.  What should I do?
+test-468,lost_or_stolen_card,security,My card was taken from me
+test-469,lost_or_stolen_card,security,My card got lost.
+test-470,lost_or_stolen_card,security,Some idiot stole my card.
+test-471,lost_or_stolen_card,security,How do I report my card lost or stolen?
+test-472,lost_or_stolen_card,security,My card is lost! What do I do now?
+test-473,lost_or_stolen_card,security,I'm in Spain and my stuff has been stolen. My card was with it and I need a new one shipped and the old one frozen.
+test-474,lost_or_stolen_card,security,I believe my credit card was stolen.
+test-475,lost_or_stolen_card,security,How do I report a stolen card?
+test-476,lost_or_stolen_card,security,"Somebody has stolen my card, I need help please."
+test-477,lost_or_stolen_card,security,I cannot find my credit card.
+test-478,lost_or_stolen_card,security,Are you able to locate my card?
+test-479,lost_or_stolen_card,security,My card got stolen!
+test-480,lost_or_stolen_card,security,Help me please!  My card was stolen!
+test-1401,compromised_card,security,I think someone is using my card to make transactions I don't remember.
+test-1402,compromised_card,security,someone is using my account
+test-1403,compromised_card,security,Someone I don't know has used my card without permission.
+test-1404,compromised_card,security,My card was used without my permission.
+test-1405,compromised_card,security,Can I freeze my card right now?
+test-1406,compromised_card,security,Freeze my account it's been hacked.
+test-1407,compromised_card,security,"There are transactions I didn't make, someone else must have used my card."
+test-1408,compromised_card,security,Can you freeze my card because someone used it while I was out of town. I did not make these purchases.
+test-1409,compromised_card,security,Someone is using my account to do online shopping! Please freeze it asap
+test-1410,compromised_card,security,Someone else may be using my card.  There are transactions I don't recognize.
+test-1411,compromised_card,security,What do I do to stop unauthorized transactions on my card? I was never in the place from which the transactions on my bill were made and I never made them. Please help!
+test-1412,compromised_card,security,What do I do if I think my card was improperly used?
+test-1413,compromised_card,security,How can I stop fraud on my account right now?
+test-1414,compromised_card,security,"I think my identity has been stolen, can you check on unauthorized charges?"
+test-1415,compromised_card,security,I think someone else is using my card.  There are transactions I didn't make.
+test-1416,compromised_card,security,"I don't recognize some of the transactions on my card, I think someone must have gotten my card info and used it."
+test-1417,compromised_card,security,Can I use app to freeze account and dispute fraud?
+test-1418,compromised_card,security,My card is being used online to make a bunch of purchases! Someone else is using it fraudulently. Can you help me freeze it?
+test-1419,compromised_card,security,"Someone has my card number, freeze my account."
+test-1420,compromised_card,security,"I see random purchases to my account, was it hacked?"
+test-1421,compromised_card,security,It seems someone used my card! There are a few transactions from a small town in the middle of nowhere that I definitely have not made! Please prevent them from using it immediately!
+test-1422,compromised_card,security,How do I freeze my card using the app?
+test-1423,compromised_card,security,My card has been compromised
+test-1424,compromised_card,security,What should I do if I think that someone else may be using my card.
+test-1425,compromised_card,security,"The transactions showing up are strange, I think my card was used without me knowing."
+test-1426,compromised_card,security,How do I freeze my account?
+test-1427,compromised_card,security,"I'm not certain, but someone may be using my card."
+test-1428,compromised_card,security,How do I freeze my card? I think someone is using it to make a bunch of online transactions.
+test-1429,compromised_card,security,I think someone got my card details and used it because there are transactions i don't recognize. What do I do now?
+test-1430,compromised_card,security,Someone else used my card!
+test-1431,compromised_card,security,I believe someone is using my card without my agreement!
+test-1432,compromised_card,security,"If I feel someone has my card information, can I get a new card?"
+test-1433,compromised_card,security,"There are a few transaction that I don't recognize, I think someone managed to get my card details and use it."
+test-1434,compromised_card,security,I think someone has access to my card numbers that shouldn't.
+test-1435,compromised_card,security,I think my child used my card while I wasn't home.
+test-1436,compromised_card,security,What do I do if I think someone managed to get my card information?
+test-1437,compromised_card,security,I think someone copied the numbers on my card and is using them.
+test-1438,compromised_card,security,What should I do if I think someone is using my card.
+test-1439,compromised_card,security,Can I use app to freeze my card and dispute fraud?
+test-1440,compromised_card,security,"Someone else is using my card, freeze it."
+test-1841,pending_transfer,transfer,"I did transfer, why is it pending"
+test-1842,pending_transfer,transfer,How long for money transfer to show?
+test-1843,pending_transfer,transfer,Why is my transfer not done yet?
+test-1844,pending_transfer,transfer,I have a pending transfer
+test-1845,pending_transfer,transfer,I am waiting for a pending money transfer to process.
+test-1846,pending_transfer,transfer,i transfered however its still pending
+test-1847,pending_transfer,transfer,I have a transfer that's pending and wanted to know how long it is going to take to process?
+test-1848,pending_transfer,transfer,So the transfer finally worked but now it's been pending for quite a long time. How long do you expect me to wait for it? It's quite urgent
+test-1849,pending_transfer,transfer,I had made a transfer but its still pending.
+test-1850,pending_transfer,transfer,I submitted my transfer but it has been pending for quite a while and I was wondering what takes so long? why hasn't it completed
+test-1851,pending_transfer,transfer,How can I speed up a transfer?  Mine is pending.
+test-1852,pending_transfer,transfer,How long can an EU transfer take?
+test-1853,pending_transfer,transfer,My transfer is still coming up as pending.
+test-1854,pending_transfer,transfer,I'm trying to transfer money to another country. It's just pending and not sending. My account details are correct. Please help me.
+test-1855,pending_transfer,transfer,My transfer is still pending and I know the account numbers are correct.  Please help.
+test-1856,pending_transfer,transfer,"I transferred money yesterday, but it still isn't available?"
+test-1857,pending_transfer,transfer,How long does a transfer stay pending?
+test-1858,pending_transfer,transfer,How long do transfer pend for?
+test-1859,pending_transfer,transfer,Why hasn't my transfer gone through yet?
+test-1860,pending_transfer,transfer,When will the transfer go through?
+test-1861,pending_transfer,transfer,Please explain why the transfers shows up as pending?
+test-1862,pending_transfer,transfer,"I double checked that I have the correct account details , they're right for sure. Transfer is still pending since forever. What should be done now?"
+test-1863,pending_transfer,transfer,When will my transfer go through?
+test-1864,pending_transfer,transfer,What is the cause that the transfer shows as pending?
+test-1865,pending_transfer,transfer,When will the transfer be completed?
+test-1866,pending_transfer,transfer,Pending transfer?
+test-1867,pending_transfer,transfer,"I would like to know why my payment is still pending, can you help?"
+test-1868,pending_transfer,transfer,Someone transferred money to me and it doesn't show
+test-1869,pending_transfer,transfer,How long does a transfer take to be confirmed?
+test-1870,pending_transfer,transfer,I made a transfer 12 hours ago. Why is it still listed as pending?
+test-1871,pending_transfer,transfer,"Why does my transfer say ""pending""?"
+test-1872,pending_transfer,transfer,How long can I expect a transfer to pend for?
+test-1873,pending_transfer,transfer,For how long will my transfer be pending?
+test-1874,pending_transfer,transfer,Transferring money in 2018 to another country shouldn't take this long. My transfer has been pending for too long. I verified my account details are correct.
+test-1875,pending_transfer,transfer,Why is a money transfer not showing?
+test-1876,pending_transfer,transfer,The transfer is coming up as pending the payment is due today. Will I be charged a fee?
+test-1877,pending_transfer,transfer,I am still waiting for a money transfer to show
+test-1878,pending_transfer,transfer,My transfer hasn't gone through yet.
+test-1879,pending_transfer,transfer,I am confused as to why my transfer could still be pending.
+test-1880,pending_transfer,transfer,How long does it take for a money transfer to show?
+test-1961,transaction_charged_twice,billing_dispute,I got double charged for a payment so how do I fix that?
+test-1962,transaction_charged_twice,billing_dispute,"I've just come back from an eating holiday in the USA and Canada and have SO many pending and duplicated transactions on my account.  I think there is something wrong, can you look in to it please?"
+test-1963,transaction_charged_twice,billing_dispute,Why am I being charged twice fro a restaurant?
+test-1964,transaction_charged_twice,billing_dispute,I would like to know why I was charged twice for my purchase.
+test-1965,transaction_charged_twice,billing_dispute,I didn't buy this twice
+test-1966,transaction_charged_twice,billing_dispute,Why was I chaged twice for the same thing?
+test-1967,transaction_charged_twice,billing_dispute,Why is there more then one charge on my card I only paid for one not twice how can I fix this?
+test-1968,transaction_charged_twice,billing_dispute,I have a duplicate payment showing up on the app. How do I stop myself being charged for the thing twice?
+test-1969,transaction_charged_twice,billing_dispute,Why would I be charged more than once for the same transaction?
+test-1970,transaction_charged_twice,billing_dispute,I was wondering how I could have two charges for the same item happen more than once in a 7 day period. Is there anyway I could get this corrected asap.
+test-1971,transaction_charged_twice,billing_dispute,Can you please check if I was charged twice?
+test-1972,transaction_charged_twice,billing_dispute,I have been charged twice
+test-1973,transaction_charged_twice,billing_dispute,It appears that I am being double charged for some items that I have purchased this past week.  Please review and correct.
+test-1974,transaction_charged_twice,billing_dispute,It looks like this week I was double charged for a couple things. Is there any way that you can look into this for me and return the double charged items back to my card?
+test-1975,transaction_charged_twice,billing_dispute,I noticed after looking over my transactions that I have been charged twice from an earlier restaurant visit this week. Is it possible that one of these can be removed so I get the money back for the one that is not accurate?
+test-1976,transaction_charged_twice,billing_dispute,I think something may have happened that caused a charge to show up twice.
+test-1977,transaction_charged_twice,billing_dispute,Why is there a transaction that shows multiple times?
+test-1978,transaction_charged_twice,billing_dispute,I see what looks like duplicate charges on account.
+test-1979,transaction_charged_twice,billing_dispute,Why was I charged multiple times for the same thing?
+test-1980,transaction_charged_twice,billing_dispute,I had a duplicate card and got charged twice. How do I resolve this?
+test-1981,transaction_charged_twice,billing_dispute,Hello. I checked my transactions and saw I was double charged on my card for a restaurant visit. I would like to get my money back.
+test-1982,transaction_charged_twice,billing_dispute,Why am I being charged twice?
+test-1983,transaction_charged_twice,billing_dispute,Transactions on my card look really weird. I've been charged twice for a couple things this week! Please check this and return the double charged ones.
+test-1984,transaction_charged_twice,billing_dispute,Please check payments on my card. There is a duplicate and I only bought it once.
+test-1985,transaction_charged_twice,billing_dispute,"More than one time this week, I have been charged more than once for the same transaction. Please correct the issue and refund the duplicate charges."
+test-1986,transaction_charged_twice,billing_dispute,A transaction is repeated several times on my account.
+test-1987,transaction_charged_twice,billing_dispute,I've been charged more than once for the same transaction
+test-1988,transaction_charged_twice,billing_dispute,My card has been charged two separate times for a single transaction.
+test-1989,transaction_charged_twice,billing_dispute,Can you explain why there is a payment showing twice?
+test-1990,transaction_charged_twice,billing_dispute,Why have I been charged twice for the same transaction?
+test-1991,transaction_charged_twice,billing_dispute,I see that I have been charged multiple times for the same transaction.
+test-1992,transaction_charged_twice,billing_dispute,I was double charged
+test-1993,transaction_charged_twice,billing_dispute,I have multiple charges on the same transaction.
+test-1994,transaction_charged_twice,billing_dispute,"Looks like my card payment was duplicated. I went to pay at the store earlier, got declined once,second time it works. App still stays pending for one of the payments. Can you please remove one of them as it's wrong and clearly was declined?"
+test-1995,transaction_charged_twice,billing_dispute,I have a transaction that shows several times
+test-1996,transaction_charged_twice,billing_dispute,I recently got charged twice from a restaurant that I was at this week and I would like for one of those payments to be removed from my account.
+test-1997,transaction_charged_twice,billing_dispute,There is more than one of the same transaction on my account.
+test-1998,transaction_charged_twice,billing_dispute,I have a duplicate payment showing
+test-1999,transaction_charged_twice,billing_dispute,I made a payment that got charged twice instead of once.
+test-2000,transaction_charged_twice,billing_dispute,What are my remedies if I think I was charged twice for the same expense?
+test-2041,transfer_timing,transfer,What is the number of days I have to wait for my Europe transfer?
+test-2042,transfer_timing,transfer,What is the wait time for a transfer from the US?
+test-2043,transfer_timing,transfer,I need a fast transfer from China?  How fast will it be?
+test-2044,transfer_timing,transfer,how soon will I see the transfer in my account?
+test-2045,transfer_timing,transfer,How many days does it take until funds are in my account?
+test-2046,transfer_timing,transfer,How long until my transfer goes through?
+test-2047,transfer_timing,transfer,Do transfers from Europe take longer?
+test-2048,transfer_timing,transfer,What is the fastest that I can make a transfer?
+test-2049,transfer_timing,transfer,how long dies it take for transfers to reflect on my balance
+test-2050,transfer_timing,transfer,"If I started the Bank transfer from Europe, how long will the process take to complete?"
+test-2051,transfer_timing,transfer,How long until the money is in my account?
+test-2052,transfer_timing,transfer,When will a transfer reach my account?
+test-2053,transfer_timing,transfer,When should I expect to see my transfer hit my account?
+test-2054,transfer_timing,transfer,Will my transfer immediately show up in my account?
+test-2055,transfer_timing,transfer,"If I need to do a quick transfer from China, how long should I expect the transfer to take?"
+test-2056,transfer_timing,transfer,When does the money get transferred to my account
+test-2057,transfer_timing,transfer,How long do i have to wait for a transfer to reach my account?
+test-2058,transfer_timing,transfer,How long does it take for funds to come through the US to my account?
+test-2059,transfer_timing,transfer,How long is my Europe transfer wait?
+test-2060,transfer_timing,transfer,How many days does a transfer from the US take?
+test-2061,transfer_timing,transfer,How long do I have to wait for a transfer from the US?
+test-2062,transfer_timing,transfer,How long is the wait for a US transfer?
+test-2063,transfer_timing,transfer,How many days until the money will be in my account?
+test-2064,transfer_timing,transfer,How long does it take for a transfer?
+test-2065,transfer_timing,transfer,What is the time frame for a transfer from the US?
+test-2066,transfer_timing,transfer,when will i receive a US transfer
+test-2067,transfer_timing,transfer,Approximately how long will an urgent transfer from China take?
+test-2068,transfer_timing,transfer,"I initiated a Bank transfer form Europe, how long will this take?"
+test-2069,transfer_timing,transfer,How long does it take to process transfers from Europe?
+test-2070,transfer_timing,transfer,How long does a funds transfer take from one back to another?
+test-2071,transfer_timing,transfer,What would the approximate delivery date be if I transferred something urgently to China?
+test-2072,transfer_timing,transfer,I have to transfer something to China as fast as I can. How long will it take to arrive in China?
+test-2073,transfer_timing,transfer,How long to I have to wait for a transfer to reach my account?
+test-2074,transfer_timing,transfer,How long is it going to take for my funds to show in my account?
+test-2075,transfer_timing,transfer,"How long does a transfer take from the point it's sent, to the point it arrives in my account?"
+test-2076,transfer_timing,transfer,How long will it take for the transfer to reach my account?
+test-2077,transfer_timing,transfer,If my transfer is from Europe how long will it take?
+test-2078,transfer_timing,transfer,There is an important thing from China that I need to transfer. Approximately how long will this take?
+test-2079,transfer_timing,transfer,How long does a transfer take from china?
+test-2080,transfer_timing,transfer,When will money be available in my account?

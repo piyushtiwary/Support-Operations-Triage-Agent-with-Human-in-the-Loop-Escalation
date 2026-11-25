@@ -1,0 +1,137 @@
+{
+  "sklearn_version": "1.9.1",
+  "training_count": 839,
+  "threshold": 0.48,
+  "threshold_selection": {
+    "criterion": "Maximize five-label macro-F1 on BANKING77 dev plus authored negatives. Search 0.30 to 0.95 in 0.01 steps and break ties toward lower thresholds.",
+    "macro_f1": 0.914326188372778,
+    "authored_negatives": 8,
+    "negatives_classified_unknown": 5
+  },
+  "keyword_baseline": {
+    "confusion_counts": {
+      "delivery": {
+        "delivery": 14,
+        "transfer": 0,
+        "billing_dispute": 0,
+        "security": 2,
+        "unknown": 37
+      },
+      "transfer": {
+        "delivery": 1,
+        "transfer": 50,
+        "billing_dispute": 0,
+        "security": 0,
+        "unknown": 5
+      },
+      "billing_dispute": {
+        "delivery": 0,
+        "transfer": 0,
+        "billing_dispute": 23,
+        "security": 0,
+        "unknown": 45
+      },
+      "security": {
+        "delivery": 0,
+        "transfer": 0,
+        "billing_dispute": 0,
+        "security": 15,
+        "unknown": 18
+      },
+      "unknown": {
+        "delivery": 0,
+        "transfer": 0,
+        "billing_dispute": 0,
+        "security": 0,
+        "unknown": 0
+      }
+    },
+    "correct": 102,
+    "total": 210,
+    "macro_f1_four_categories": 0.6151638594479882
+  },
+  "raw_model": {
+    "confusion_counts": {
+      "delivery": {
+        "delivery": 52,
+        "transfer": 0,
+        "billing_dispute": 0,
+        "security": 1,
+        "unknown": 0
+      },
+      "transfer": {
+        "delivery": 0,
+        "transfer": 56,
+        "billing_dispute": 0,
+        "security": 0,
+        "unknown": 0
+      },
+      "billing_dispute": {
+        "delivery": 1,
+        "transfer": 1,
+        "billing_dispute": 66,
+        "security": 0,
+        "unknown": 0
+      },
+      "security": {
+        "delivery": 1,
+        "transfer": 0,
+        "billing_dispute": 0,
+        "security": 32,
+        "unknown": 0
+      },
+      "unknown": {
+        "delivery": 0,
+        "transfer": 0,
+        "billing_dispute": 0,
+        "security": 0,
+        "unknown": 0
+      }
+    },
+    "correct": 206,
+    "total": 210,
+    "macro_f1_four_categories": 0.9794711639657367
+  },
+  "thresholded_model": {
+    "confusion_counts": {
+      "delivery": {
+        "delivery": 52,
+        "transfer": 0,
+        "billing_dispute": 0,
+        "security": 1,
+        "unknown": 0
+      },
+      "transfer": {
+        "delivery": 0,
+        "transfer": 56,
+        "billing_dispute": 0,
+        "security": 0,
+        "unknown": 0
+      },
+      "billing_dispute": {
+        "delivery": 0,
+        "transfer": 0,
+        "billing_dispute": 66,
+        "security": 0,
+        "unknown": 2
+      },
+      "security": {
+        "delivery": 1,
+        "transfer": 0,
+        "billing_dispute": 0,
+        "security": 32,
+        "unknown": 0
+      },
+      "unknown": {
+        "delivery": 0,
+        "transfer": 0,
+        "billing_dispute": 0,
+        "security": 0,
+        "unknown": 0
+      }
+    },
+    "correct": 206,
+    "total": 210,
+    "macro_f1_four_categories": 0.9839759180085849
+  }
+}

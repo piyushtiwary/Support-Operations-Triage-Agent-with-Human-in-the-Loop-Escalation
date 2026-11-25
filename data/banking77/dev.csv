@@ -1,0 +1,211 @@
+id,intent,category,text
+train-137,card_arrival,delivery,Where is the tracking number for the card?
+train-132,card_arrival,delivery,Can the card was sen to me be tracked?
+train-149,card_arrival,delivery,I haven't gotten my credit card in the mail.
+train-40,card_arrival,delivery,My card still hasn't been delivered
+train-68,card_arrival,delivery,how to track the card you sent
+train-50,card_arrival,delivery,How can I check on the status of my new card?
+train-124,card_arrival,delivery,Why hasn't my card arrived yet?
+train-145,card_arrival,delivery,Is a tracking number available for the card that was just sent?
+train-101,card_arrival,delivery,can you share card tracking number?
+train-70,card_arrival,delivery,How can I check on the delivery status of my card?
+train-150,card_arrival,delivery,My card hasn't arrived yet. What do I do?
+train-19,card_arrival,delivery,My new card has not been delivered to my home yet. What is going on?
+train-131,card_arrival,delivery,how can i track card you sent
+train-120,card_arrival,delivery,How long does it take to recieve my new card?
+train-97,card_arrival,delivery,Shouldn't my new card be here by now?
+train-1,card_arrival,delivery,I am still waiting on my card?
+train-133,card_arrival,delivery,why have i not got my new card?
+train-43,card_arrival,delivery,I ordered my card but it hasn't been delivered yet
+train-73,card_arrival,delivery,How can I see the progress of delivery of the card that was sent?
+train-31,card_arrival,delivery,Is there a tracking number for the card you sent me?
+train-89,card_arrival,delivery,Can you tell me why I haven't received my new card yet?
+train-3,card_arrival,delivery,I have been waiting over a week. Is the card still coming?
+train-126,card_arrival,delivery,How long until my new card gets here?
+train-55,card_arrival,delivery,How can I periodically check the delivery of the card you sent?
+train-77,card_arrival,delivery,My card hasn't shown up yet.
+train-39,card_arrival,delivery,I haven't received my card and am worried it is lost.
+train-122,card_arrival,delivery,What's the card you sent me's tracking number?
+train-146,card_arrival,delivery,Why haven't I gotten my new card?
+train-62,card_arrival,delivery,I am still waiting for my card.
+train-113,card_arrival,delivery,I still haven't received my card in the mail
+train-65,card_arrival,delivery,I haven't gotten my new card.
+train-1085,card_delivery_estimate,delivery,I placed my order a week ago. Is it ok that my card isn't here yet?
+train-1012,card_delivery_estimate,delivery,How long is the wait for my card?
+train-1049,card_delivery_estimate,delivery,What is the wait time for delivery to the US?
+train-1073,card_delivery_estimate,delivery,"I haven't received my card yet, how long does it normally take?"
+train-1025,card_delivery_estimate,delivery,I'm worried my card might be lost in the mail? How long does it usually take to arrive?
+train-1078,card_delivery_estimate,delivery,I ordered my card a couple weeks ago and haven't received it yet. When can I expect it?
+train-1100,card_delivery_estimate,delivery,Could I chose the date to have it delivered?
+train-1016,card_delivery_estimate,delivery,How long is the delivery time to the US?
+train-1099,card_delivery_estimate,delivery,When will I receive my card?
+train-1051,card_delivery_estimate,delivery,When can I expect my card to arrive?
+train-1113,card_delivery_estimate,delivery,How long does it take for my physical card to be delivered.
+train-1062,card_delivery_estimate,delivery,How long will it take to deliver to the US?
+train-1030,card_delivery_estimate,delivery,How quickly can you get me my card?
+train-1116,card_delivery_estimate,delivery,are you sending me my card?
+train-1090,card_delivery_estimate,delivery,Can I have my card delivered on Tuesday?
+train-1107,card_delivery_estimate,delivery,How many days to deliver to a US customer?
+train-1111,card_delivery_estimate,delivery,What is delivery speed to the United States?
+train-1019,card_delivery_estimate,delivery,I need my card soon.
+train-1103,card_delivery_estimate,delivery,Please send my card as quickly as possible.
+train-1035,card_delivery_estimate,delivery,"Give me my card, I need it now!"
+train-1105,card_delivery_estimate,delivery,When can I expect to receive my card?
+train-1070,card_delivery_estimate,delivery,Can I pay more to get it deliver quicker?
+train-4505,compromised_card,security,Someone used my card without my permission.
+train-4516,compromised_card,security,"Can you check about unauthorized use of my card, I think someone is using mine without my knowledge?"
+train-4502,compromised_card,security,What should I do if I think someone stole my details and used my information to make some transactions?
+train-4507,compromised_card,security,I see some transactions that I don't recognize.  I think someone stole my details.
+train-4485,compromised_card,security,Someone must have found my card details as I don't recognize these transactions.
+train-4484,compromised_card,security,There is unusual activity on my account and I believe someone took my card.
+train-4478,compromised_card,security,Someone has been using my card. There are unfamiliar transactions on there. Can you freeze the card to keep this from happening?
+train-4480,compromised_card,security,I want to cancel my card. I think someone else is using it.
+train-4520,compromised_card,security,My card was stolen and used to make several purchases. Please freeze my card so no one can use it.
+train-4535,compromised_card,security,Somebody used my card without my knowledge!
+train-4538,compromised_card,security,"I might be paranoid, but someone may be using my card."
+train-4543,compromised_card,security,"There are transactions that I did not make on my account, I think someone has my information."
+train-4542,compromised_card,security,My card data has been exposed.
+train-4489,compromised_card,security,My card has been compromised. I see a bunch of online shopping charges that I didn't make. I need to freeze it immediately.
+train-4504,compromised_card,security,What to do if my card has been used without my permission?
+train-4474,compromised_card,security,I suspect someone used my card.
+train-4524,compromised_card,security,What do I do if I think someone has used my card without permission? I can see a few transactions I don't recognize.
+train-608,extra_charge_on_statement,billing_dispute,There is an odd 1£ charge that appears as pending on my statement. What's the reason for that? I haven't purchased anything for a pound.
+train-587,extra_charge_on_statement,billing_dispute,Where did this extra €1 fee on my statement come from?
+train-688,extra_charge_on_statement,billing_dispute,What is this extra fee on my statement.
+train-623,extra_charge_on_statement,billing_dispute,"When I look at my statement there is an extra fee, that is for what?"
+train-691,extra_charge_on_statement,billing_dispute,Why was I charged an additional $1?
+train-680,extra_charge_on_statement,billing_dispute,What is the dollar that I have pending on my statement there?
+train-654,extra_charge_on_statement,billing_dispute,why was i charged a small amount
+train-690,extra_charge_on_statement,billing_dispute,"There's a €1 fee on my statement, why?"
+train-673,extra_charge_on_statement,billing_dispute,There is some odd 1£ charge that appears as pending on my statement. What's that about? Pretty sure I haven't purchased anything for a pound there.
+train-732,extra_charge_on_statement,billing_dispute,I've been charged an extra £1 and I don't know what it's for
+train-641,extra_charge_on_statement,billing_dispute,I was made to pay an additional pound!
+train-662,extra_charge_on_statement,billing_dispute,What is the fee on my statement for?
+train-580,extra_charge_on_statement,billing_dispute,What is the reason for the extra fee on my statement?
+train-682,extra_charge_on_statement,billing_dispute,Can you please explain to me why there is an extra €1 fee in my statement?
+train-689,extra_charge_on_statement,billing_dispute,What does the €1 fee mean?
+train-639,extra_charge_on_statement,billing_dispute,Why does my statement have an extra fee?
+train-653,extra_charge_on_statement,billing_dispute,What am I being charged an extra pound when I haven't bought something worth that much?
+train-582,extra_charge_on_statement,billing_dispute,Have have a small charge on my account from someone I purchased with but I'm not sure what it relates to.
+train-675,extra_charge_on_statement,billing_dispute,Can you tell me about why the account I have was charged an extra 1$
+train-729,extra_charge_on_statement,billing_dispute,My statement shows an extra fee - what is it?
+train-683,extra_charge_on_statement,billing_dispute,"There is an unexplained $1 charge on my statement, can you please explain this to me?"
+train-715,extra_charge_on_statement,billing_dispute,Why would there be an extra charge on my app?
+train-671,extra_charge_on_statement,billing_dispute,Why does my statement show an extra fee?
+train-607,extra_charge_on_statement,billing_dispute,"I just checked my statement and saw a $1 charge, why is it there?"
+train-700,extra_charge_on_statement,billing_dispute,I need to know what these extra charges are on my statement?
+train-707,extra_charge_on_statement,billing_dispute,There is an extra 1£ charge on my app. Why did you charge me extra?
+train-709,extra_charge_on_statement,billing_dispute,The $1.00 has still not been reverted as indicated in the previous email.
+train-665,extra_charge_on_statement,billing_dispute,I need some help figuring out what this strange payment is on my account. It's stays pending and won't go away.
+train-694,extra_charge_on_statement,billing_dispute,I wanted to know about a pending dollar that is on my statement.
+train-701,extra_charge_on_statement,billing_dispute,How come there is an extra fee on my statement?
+train-703,extra_charge_on_statement,billing_dispute,"I checked my statement and saw a charge of one pound, where is this charge coming from?"
+train-636,extra_charge_on_statement,billing_dispute,I have been charged an extra pound!
+train-706,extra_charge_on_statement,billing_dispute,Why was my account assessed a fee?
+train-1504,lost_or_stolen_card,security,How can I report that my card was stolen? I made a police report first.
+train-1540,lost_or_stolen_card,security,What should I do if my card is stolen?
+train-1499,lost_or_stolen_card,security,My bag got stolen with all my cards. Can you please cancel my card and send a new one?
+train-1487,lost_or_stolen_card,security,I think that my card has been stolen!
+train-1533,lost_or_stolen_card,security,Please help me.  My card is missing.
+train-1544,lost_or_stolen_card,security,Need help with a stolen card.
+train-1482,lost_or_stolen_card,security,What's the phone number to freeze a card?
+train-1551,lost_or_stolen_card,security,I've lost my card. What can I do about that?
+train-1510,lost_or_stolen_card,security,I think that the card is stolen.  What are my next steps?
+train-1484,lost_or_stolen_card,security,"Hi, I am on vacation in Spain and someone stole my bag with my phone and wallet with cards and everything. Can you block it ASAP and then I want to order a new one also ASAP."
+train-1486,lost_or_stolen_card,security,My card is missing.  Please help.
+train-1525,lost_or_stolen_card,security,I can't find my card!  What should I do?
+train-1513,lost_or_stolen_card,security,I lost track of my card
+train-1520,lost_or_stolen_card,security,Help Me!  I lost my card.  What should I do?
+train-1534,lost_or_stolen_card,security,"I lost my card, what do I do now?"
+train-1509,lost_or_stolen_card,security,What can I do if I lost my card?
+train-6021,pending_transfer,transfer,I bought something on line a and the seller hasn't received the money I sent could you please tell me how long an EU transfer takes?
+train-6061,pending_transfer,transfer,"I didn't think my country-to-country money transfer would take so long. It still says that it's pending so I re-checked all of the account information--everything seems right, so what's the deal?"
+train-6015,pending_transfer,transfer,Why is it taking so long for my pending transaction to post as cleared?
+train-6109,pending_transfer,transfer,"Hello, I went ahead and checked my account details to be sure, and they are definitely correct.  I've had a transfer pending for a while, and I can't understand why it hasn't gone through yet."
+train-6108,pending_transfer,transfer,My transfer's stuck on pending.
+train-6137,pending_transfer,transfer,"Pending still shows on this transfer, why?"
+train-6124,pending_transfer,transfer,"What does it mean when a transfer is ""pending""?"
+train-6097,pending_transfer,transfer,My money transfer has not happened yet
+train-6003,pending_transfer,transfer,What is the reason a transfer shows as pending?
+train-6026,pending_transfer,transfer,My money transfer has not yet occurred
+train-6048,pending_transfer,transfer,I am still waiting for a transfer to show up
+train-6027,pending_transfer,transfer,My transfer is still pending
+train-6076,pending_transfer,transfer,I finished my transfer. I am having an issue with it still pending. It has been a long time and i'm growing impatient
+train-6098,pending_transfer,transfer,I don't see a money transfer yet
+train-6077,pending_transfer,transfer,Why is there a pending time on my transfer?
+train-6022,pending_transfer,transfer,How long is the wait for a money transfer to show up?
+train-6091,pending_transfer,transfer,Why is the transfer still pending?  Can I do something?
+train-6092,pending_transfer,transfer,I am having to wait for my transfer to be fully processed. It seems to be taking a very long time in the pending phase. What is the normal turn around time that I can expect to see it completed?
+train-6119,pending_transfer,transfer,Do EU transfers happen quickly? I purchased something a few days ago and the seller hasn't received my money yet.
+train-6068,pending_transfer,transfer,How long does a transfer take?
+train-6036,pending_transfer,transfer,"How long does a transfer to another country normally take? I check over and over again and see that my transfer is still pending. It's 2018, nothing should take this long. I have confirmed my account information, so there is no error. What is the hold up?"
+train-6133,pending_transfer,transfer,My transfer says pending. What does that mean?
+train-6130,pending_transfer,transfer,I have a transfer that was approved that I'm urgently waiting for. How long am I supposed to wait for it?
+train-6072,pending_transfer,transfer,My account says I have a pending transfer.
+train-6001,pending_transfer,transfer,I sent a transfer and it has been pending for awhile. How long will it stay pending?
+train-6047,pending_transfer,transfer,"I've been waiting for a pending transfer to go through for a while now, and don't see any reason why I've been waiting this long.  I know that I have the correct account details, so that isn't the problem."
+train-6134,pending_transfer,transfer,Can you tell me when the transfer will be completed?
+train-6090,pending_transfer,transfer,I did a transfer but it is still pending.
+train-6034,pending_transfer,transfer,I have not seen any changes in my account balance(s) after making a transfer.
+train-6057,pending_transfer,transfer,I recently purchased something and the seller says my money has not arrived yet. It was in EU's. How long does this take?
+train-6420,transaction_charged_twice,billing_dispute,"Hi, I checked my transactions and saw that I was charged twice during a restaurant visit. I would like to get my money back."
+train-6421,transaction_charged_twice,billing_dispute,Why did I get charged more than once?
+train-6459,transaction_charged_twice,billing_dispute,"In reviewing my statement, I show I have two charges for the same purchase at the same time, which I have not made in duplicate? How do I get this solved?"
+train-6409,transaction_charged_twice,billing_dispute,"Hi, I was just checking over my card transactions and notice I was charged twice for a restaurant visit this week. Can you please remove one of these false charges from my account?"
+train-6445,transaction_charged_twice,billing_dispute,Why does my statement show various transaction times?
+train-6327,transaction_charged_twice,billing_dispute,I have a duplicate payment on my card.
+train-6477,transaction_charged_twice,billing_dispute,A duplicated payment was made for something.
+train-6357,transaction_charged_twice,billing_dispute,I was charged twice for an in-store purchase that I thought was declined.  My App says that it's still pending for one of the payments. Please make sure one of the charges is removed.
+train-6462,transaction_charged_twice,billing_dispute,I was charged twice for a few things this week when I only bought one. What do I do?
+train-6461,transaction_charged_twice,billing_dispute,"Looks like my card payment was duplicated after all. I went to pay at the store earlier, got declined once,second time it works. App still stays pending for one of the payments. Can you please remove one of them as it's wrong and was declined?"
+train-6372,transaction_charged_twice,billing_dispute,A transaction is showing more than once.
+train-6442,transaction_charged_twice,billing_dispute,How come there is a duplicate charge on my card?
+train-6471,transaction_charged_twice,billing_dispute,Who should I talk to or go to resolve a duplicate charge on my statement?
+train-6356,transaction_charged_twice,billing_dispute,"Hello,  I am a college student who I recently attended my high school reunion at a local restaurant. I paid with my credit card and now my transaction history reflects a second charge of the seemingly same payment. What could be the reason for this?  Is there any way to have the fraudulent  payment credited back onto my card?"
+train-6423,transaction_charged_twice,billing_dispute,"Help, I was charged twice!"
+train-6388,transaction_charged_twice,billing_dispute,Why am I being charged again?
+train-6333,transaction_charged_twice,billing_dispute,I have a duplicate charge
+train-6340,transaction_charged_twice,billing_dispute,There is a duplicate charge on my account.
+train-6387,transaction_charged_twice,billing_dispute,Why did my card get charged twice for a transaction?
+train-6321,transaction_charged_twice,billing_dispute,My account was charged twice for one purchase
+train-6379,transaction_charged_twice,billing_dispute,I got charged twice with a duplicate card. How do I resolve this?
+train-6400,transaction_charged_twice,billing_dispute,Why am i being double charged for something?
+train-6348,transaction_charged_twice,billing_dispute,"Looks like my card payment was made twice by mistake. I went to pay at the store earlier which rejected once, second time it worked. App is on pending for one of the payments. Can you please remove one of them as it's wrong and clearly was declined?"
+train-6385,transaction_charged_twice,billing_dispute,Why was I charged twice for my item!
+train-6439,transaction_charged_twice,billing_dispute,I need a transaction reversed from my account.
+train-6438,transaction_charged_twice,billing_dispute,There is more than one charge on my account for a transaction.
+train-6320,transaction_charged_twice,billing_dispute,I was charged for the same thing twice
+train-6428,transaction_charged_twice,billing_dispute,My statement shows different transaction times.
+train-6478,transaction_charged_twice,billing_dispute,Why is there are there two of the same transaction?
+train-6407,transaction_charged_twice,billing_dispute,I was charged multiple times for one purchase
+train-6363,transaction_charged_twice,billing_dispute,Why was I double charged?
+train-6312,transaction_charged_twice,billing_dispute,How do I query a payment on my card? It looks like I have paid for the same thing twice.
+train-6326,transaction_charged_twice,billing_dispute,How do I get my money back for a duplicated charge?
+train-6451,transaction_charged_twice,billing_dispute,A transaction posted twice to my account.
+train-6316,transaction_charged_twice,billing_dispute,What do I do if I've been charged twice for the same transaction?
+train-6702,transfer_timing,transfer,Can I transfer something urgently from China? How long does it take?
+train-6690,transfer_timing,transfer,"I must quickly transfer something from China, and I need to know how long it will take."
+train-6687,transfer_timing,transfer,"Its been 3 days, How long will my transfer take to get to my wallet?"
+train-6638,transfer_timing,transfer,"I've made a transfer, how long until the money reaches my account?"
+train-6718,transfer_timing,transfer,What is taking so long on my transfer from the US?
+train-6709,transfer_timing,transfer,what is the time frame for transfers
+train-6661,transfer_timing,transfer,Why hasn't the transfer shown up in my account yet?
+train-6686,transfer_timing,transfer,Help! I need to transfer something to China.
+train-6618,transfer_timing,transfer,Where's the money from my transfer from Europe?
+train-6681,transfer_timing,transfer,How long does it take transfers from Europe to complete?
+train-6603,transfer_timing,transfer,Does a US transfer take long
+train-6714,transfer_timing,transfer,What is the length of time for money to reach the account?
+train-6645,transfer_timing,transfer,When will my transfer be in my account?
+train-6691,transfer_timing,transfer,how long does a US transfer take
+train-6672,transfer_timing,transfer,"I need to transfer something ASAP from China, how long will it take to post to my account?"
+train-6644,transfer_timing,transfer,How long does it take for a transfer to show up in my account?
+train-6698,transfer_timing,transfer,Will it take more than 3 days for my transfer to reach my account?
+train-6719,transfer_timing,transfer,How long does transfer from the US take?
+train-6656,transfer_timing,transfer,How do i transfer something faster than normal?
+train-6639,transfer_timing,transfer,"I'm waiting for a transfer from the US, how much longer?"
+train-6596,transfer_timing,transfer,Will the transfer show up in my account soon?
+train-6608,transfer_timing,transfer,How long does a European transfer take?
+train-6694,transfer_timing,transfer,When can I expect the transfer to arrive in my account?
+train-6678,transfer_timing,transfer,When can I expect my transfer to reach my account?
+train-6640,transfer_timing,transfer,What is the estimated time on an urgent transfer from China?
+train-6721,transfer_timing,transfer,How long does it take to make an urgent transfer from China?

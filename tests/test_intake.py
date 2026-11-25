@@ -1,11 +1,8 @@
 import asyncio
 import sqlite3
-from contextlib import asynccontextmanager, closing
+from contextlib import closing
 
-import httpx
 import pytest
-
-from main import create_app
 
 
 pytestmark = pytest.mark.anyio
@@ -14,34 +11,8 @@ DELIVERY = {"external_id": "delivery-001", "text": "Where is my card?", "account
 MIXED = {"external_id": "mixed-001", "text": "My card hasn't arrived and someone used it"}
 
 
-@pytest.fixture
-def anyio_backend():
-    return "asyncio"
-
-
-@asynccontextmanager
-async def running_client(path):
-    app = create_app(path)
-    async with app.router.lifespan_context(app):
-        async with httpx.AsyncClient(
-            transport=httpx.ASGITransport(app=app), base_url="http://test"
-        ) as client:
-            yield client
-
-
-@pytest.fixture
-def database(tmp_path):
-    return tmp_path / "tickets.sqlite3"
-
-
-@pytest.fixture
-async def client(database):
-    async with running_client(database) as client:
-        yield client
-
-
 @pytest.mark.parametrize("payload", [DELIVERY, MIXED])
-async def test_submit_retrieve_and_replay_after_restart(database, payload):
+async def test_submit_retrieve_and_replay_after_restart(database, payload, running_client):
     async with running_client(database) as first:
         response = await first.post("/tickets", json=payload)
         assert response.status_code == 201
