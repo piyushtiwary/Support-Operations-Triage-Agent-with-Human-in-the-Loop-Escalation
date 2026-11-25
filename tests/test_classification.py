@@ -108,7 +108,9 @@ async def test_triage_replay_after_restart(database, running_client, text, categ
 
     async with running_client(database, model_path=database.with_suffix(".missing")) as restarted:
         stored = (await restarted.get(url)).json()
-        assert stored == {**ticket, "state": "classified", "classification": prediction}
+        assert {key: value for key, value in stored.items() if key != "lookup"} == {
+            **ticket, "state": "classified", "classification": prediction
+        }
         assert (await restarted.post(url + "/triage")).json() == prediction
         assert (await restarted.post("/tickets", json=submission)).json() == stored
 

@@ -1,15 +1,28 @@
-"""Local ticket intake and triage API. Run with uv run --locked uvicorn main:app."""
+"""Local ticket intake and triage API. Run with uv run --locked uvicorn main:app.
 
+Mocks run in-process by default. To exercise a real connection or disconnect it,
+run uvicorn context_api:app --port 8001 and set TRIAGE_CONTEXT_URL to
+http://127.0.0.1:8001 before starting the ticket API.
+"""
+
+import os
 import sqlite3
 from contextlib import asynccontextmanager, closing
 from pathlib import Path
 from typing import Literal
 from uuid import uuid4
 
+import httpx
 from fastapi import FastAPI, HTTPException, Response
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from fastapi.concurrency import run_in_threadpool
+from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, field_validator
 
 from classification import MODEL_PATH, Classification, Classifier, classify
+from context_api import router as context_router
+from context_tools import Lookup, lookup_context
+
+
+LOOKUP_ADAPTER = TypeAdapter(Lookup)
 
 
 class TicketSubmission(BaseModel):
@@ -31,6 +44,7 @@ class Ticket(TicketSubmission):
     id: str
     state: Literal["received", "classified"]
     classification: Classification | None = None
+    lookup: Lookup | None = None
 
 
 def ticket_from_row(row: sqlite3.Row) -> Ticket:
@@ -38,10 +52,15 @@ def ticket_from_row(row: sqlite3.Row) -> Ticket:
     result = fields.pop("classification")
     if result is not None:
         fields["classification"] = Classification.model_validate_json(result)
+    lookup = fields.pop("lookup")
+    if lookup is not None:
+        fields["lookup"] = LOOKUP_ADAPTER.validate_json(lookup)
     return Ticket(**fields)
 
 
-def create_app(db_path: Path = Path("tickets.sqlite3"), *, model_path: Path = MODEL_PATH) -> FastAPI:
+def create_app(db_path: Path = Path("tickets.sqlite3"), *, model_path: Path = MODEL_PATH,
+               context_base_url: str | None = None,
+               context_transport: httpx.AsyncBaseTransport | None = None) -> FastAPI:
     db_path = db_path.resolve()
 
     def connect() -> sqlite3.Connection:
@@ -65,10 +84,20 @@ def create_app(db_path: Path = Path("tickets.sqlite3"), *, model_path: Path = MO
             columns = {r["name"] for r in db.execute("PRAGMA table_info(tickets)")}
             if "classification" not in columns:
                 db.execute("ALTER TABLE tickets ADD COLUMN classification TEXT")
+            if "lookup" not in columns:
+                db.execute("ALTER TABLE tickets ADD COLUMN lookup TEXT")
         app.state.classifier = Classifier.load(model_path)
-        yield
+        base_url = context_base_url or os.getenv("TRIAGE_CONTEXT_URL")
+        transport = context_transport
+        if transport is None and not base_url:
+            transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(base_url=base_url or "http://local-context",
+                                     transport=transport, trust_env=False) as client:
+            app.state.context_client = client
+            yield
 
     app = FastAPI(title="Support & Operations Triage", lifespan=lifespan)
+    app.include_router(context_router)
 
     @app.post(
         "/tickets",
@@ -112,24 +141,32 @@ def create_app(db_path: Path = Path("tickets.sqlite3"), *, model_path: Path = MO
         with closing(connect()) as db:
             return find_ticket(db, id)
 
-    @app.post("/tickets/{id}/triage", responses={404: {"description": "Ticket not found"}})
-    def triage_ticket(id: str) -> Classification:
-        """Classify a stored ticket and return its provisional prediction."""
+    def save_triage(ticket: Ticket, prediction: Classification, lookup: Lookup | None) -> Classification:
         with closing(connect()) as db, db:
-            ticket = find_ticket(db, id)
-            previous = ticket.classification
-            if previous and (previous.reason != "model_unavailable" or app.state.classifier is None):
-                return previous
-            result = classify(ticket.text, app.state.classifier)
-            # Compare and swap so concurrent requests return the same stored prediction.
+            # Publish both together; the first completed lookup wins on concurrent replay.
             cursor = db.execute(
-                """UPDATE tickets SET state = 'classified', classification = ?
-                   WHERE id = ? AND classification IS ?""",
-                (result.model_dump_json(), id, previous.model_dump_json() if previous else None),
+                """UPDATE tickets SET state = 'classified', classification = ?, lookup = ?
+                   WHERE id = ? AND classification IS ? AND lookup IS NULL""",
+                (prediction.model_dump_json(), lookup.model_dump_json() if lookup else None,
+                 ticket.id, ticket.classification.model_dump_json() if ticket.classification else None),
             )
             if cursor.rowcount:
-                return result
-            return find_ticket(db, id).classification
+                return prediction
+            return find_ticket(db, ticket.id).classification
+
+    @app.post("/tickets/{id}/triage", responses={404: {"description": "Ticket not found"}})
+    async def triage_ticket(id: str) -> Classification:
+        """Classify and look up relevant context. GET the ticket to inspect the stored lookup."""
+        ticket = await run_in_threadpool(get_ticket, id)
+        prediction = ticket.classification
+        if ticket.lookup is not None:
+            return prediction
+        if prediction is None or (prediction.reason == "model_unavailable" and app.state.classifier):
+            prediction = await run_in_threadpool(classify, ticket.text, app.state.classifier)
+        lookup = await lookup_context(app.state.context_client, prediction, ticket.text, ticket.account_ref)
+        if prediction == ticket.classification and lookup is None:
+            return prediction
+        return await run_in_threadpool(save_triage, ticket, prediction, lookup)
 
     return app
 
